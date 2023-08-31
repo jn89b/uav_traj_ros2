@@ -1,5 +1,6 @@
 #include "rclcpp/rclcpp.hpp"
 #include "std_msgs/msg/string.hpp"
+#include "drone_interfaces/msg/waypoints.hpp"
 
 #include "Astar.h"
 #include "GridMap.h"
@@ -33,7 +34,7 @@ class GlobalPlanner : public rclcpp::Node
         //void obstacles_cb(const std_msgs::msg::String::SharedPtr msg) const;
 
         // publish path to goal position
-        rclcpp::Publisher<std_msgs::msg::String>::SharedPtr path_pub_;  
+        rclcpp::Publisher<drone_interfaces::msg::Waypoints>::SharedPtr path_pub_;  
         //void publish_path(const std::vector<PositionVector>& path) const;
         void publishPath();
 

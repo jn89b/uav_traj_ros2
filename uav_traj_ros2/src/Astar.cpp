@@ -21,7 +21,6 @@ void FWNode::setDirectionVec()
         direction_vec = PositionVector(pos.x,pos.y,pos.y);
         float mag_direction = sqrt((direction_vec.x * direction_vec.x) + 
             (direction_vec.y * direction_vec.y));
-
     }
     else
     {
@@ -69,9 +68,9 @@ std::vector<PositionVector> Astar::getLegalNeighbors(
 
 // --------------------------------------------------------------
 
-std::vector<PositionVector> Astar::searchPath()
+std::vector<StateInfo> Astar::searchPath()
 {
-    std::vector<PositionVector> path;
+    std::vector<StateInfo> path;
     
     // Need to also check if agent goal is not out of bounds 
     // or in an obstacle 
@@ -141,11 +140,16 @@ std::vector<PositionVector> Astar::searchPath()
 
 // --------------------------------------------------------------
 
-std::vector<PositionVector> Astar::getPath(const Node* final_node)
+std::vector<StateInfo> Astar::getPath(const Node* final_node)
 {
-    std::vector<PositionVector> path;
+    std::vector<StateInfo> path;
     auto current_node = final_node;
-    path.push_back(current_node->pos);
+    
+    StateInfo state(final_node->pos.x, final_node->pos.y, 
+        final_node->pos.z, 0.0f, 0.0f);
+
+    // state.pos = current_node->pos;
+    path.push_back(state);
 
     PositionVector current_pos = current_node->parent;
 
@@ -153,17 +157,22 @@ std::vector<PositionVector> Astar::getPath(const Node* final_node)
 
     while (!(current_pos == PositionVector(-1, -1, -1)))
     {
-        path.push_back(current_node->parent);
+        StateInfo state = StateInfo(current_node->parent.x,
+            current_node->parent.y, current_node->parent.z, 
+            0.0f, 0.0f);
+
+        path.push_back(state);
+        //path.push_back(current_node->parent);
         current_node = closed_set[positionToIndex1D(current_node->parent)];
         current_pos = current_node->parent;
     }
 
     // reverse the path
     std::reverse(path.begin(), path.end());
-    for (auto pos:path)
+    for (auto state_info:path)
     {
-        printf("Path is at %0.1f %0.1f %0.1f \n", pos.x, 
-            pos.y, pos.z);
+        printf("Path is at %0.1f %0.1f %0.1f \n", state_info.pos.x, 
+            state_info.pos.y, state_info.pos.z);
     }
 
     return path;
@@ -322,9 +331,9 @@ std::vector<PositionVector> SparseAstar::getLegalNeighbors(
 
 // ----------------------------------------------------------------
 
-std::vector<PositionVector> SparseAstar::searchPath()
+std::vector<StateInfo> SparseAstar::searchPath()
 {
-    std::vector<PositionVector> path;
+    std::vector<StateInfo> path;
     
     // Initialize the nodes
     initializeNodes();
@@ -410,12 +419,19 @@ std::vector<PositionVector> SparseAstar::searchPath()
 
 // --------------------------------------------------------------
 
-std::vector<PositionVector> SparseAstar::getPath(
+std::vector<StateInfo> SparseAstar::getPath(
     const FWNode* final_node)
 {
-    std::vector<PositionVector> path;
+    std::vector<StateInfo> path;
     auto current_node = final_node;
-    path.push_back(current_node->pos);
+    
+    StateInfo state(final_node->pos.x, 
+        final_node->pos.y, 
+        final_node->pos.z, 
+        final_node->theta_dg, 
+        final_node->psi_dg);
+
+    path.push_back(state);
 
     PositionVector current_pos = current_node->parent;
 
@@ -423,7 +439,15 @@ std::vector<PositionVector> SparseAstar::getPath(
 
     while (!(current_pos == PositionVector(-1, -1, -1)))
     {
-        path.push_back(current_node->parent);
+
+        StateInfo state(current_node->pos.x, 
+            current_node->pos.y, 
+            current_node->pos.z, 
+            current_node->theta_dg, 
+            current_node->psi_dg);
+
+        path.push_back(state);
+
         current_node = closed_set[positionToIndex1D(
             current_node->parent)];
         current_pos = current_node->parent;

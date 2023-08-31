@@ -17,13 +17,18 @@ find_package(ament_cmake REQUIRED)
 find_package(ament_cmake_python REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(rclpy REQUIRED)
-
+find_package(geometry_msgs REQUIRED)
+find_package(drone_interfaces REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
 
 # messages
 # rosidl_generate_interfaces(${PROJECT_NAME}
-#   "msg/Telem.msg"
-#   "msg/CtlTraj.msg"
+#   # "msg/WayPoints.msg"
+#   DEPENDENCIES
+#   builtin_interfaces 
+#   geometry_msgs 
+#   std_msgs 
+#   rosidl_default_generators 
 #  )
 
 # services
@@ -92,6 +97,7 @@ target_include_directories(global_planner_node PUBLIC
 ament_target_dependencies(
   global_planner_node
   "rclcpp"
+  drone_interfaces
 )
 install(TARGETS global_planner_node
   DESTINATION lib/${PROJECT_NAME})

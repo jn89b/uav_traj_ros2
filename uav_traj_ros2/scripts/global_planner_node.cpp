@@ -58,13 +58,12 @@ int main(int argc, char **argv)
         
     }
 
-
     // node declaration of class GlobalPlanner passing the name of the node and the counter init value
     auto node = std::make_shared<GlobalPlanner>(sparse_astar);
     RCLCPP_INFO(node->get_logger(), "My Use Publisher Library ROS2 node started");
     rclcpp::spin(node);
 
-
     rclcpp::shutdown();
-  return 0;
+    
+    return 0;
 }

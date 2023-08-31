@@ -168,11 +168,11 @@ class Astar
 
         // Finds the shortest path between the agent's start and 
         // goal positions
-        std::vector<PositionVector> searchPath();
+        std::vector<StateInfo> searchPath();
 
         // Returns the path found by the A* algorithm by 
         // reversing the parent nodes
-        std::vector<PositionVector> getPath(const Node* final_node);
+        std::vector<StateInfo> getPath(const Node* final_node);
 
         // Computes the 3D position to 1D index
         int positionToIndex1D(const PositionVector& pos);
@@ -238,11 +238,11 @@ class SparseAstar
 
         // Finds the shortest path between the agent's start and 
         // goal positions
-        std::vector<PositionVector> searchPath();
+        std::vector<StateInfo> searchPath();
 
         // Returns the path found by the SA*S algorithm by 
         // reversing the parent nodes
-        std::vector<PositionVector> getPath(const FWNode* final_node);
+        std::vector<StateInfo> getPath(const FWNode* final_node);
 
         // Computes the 3D position to 1D index
         int positionToIndex1D(const PositionVector& pos);

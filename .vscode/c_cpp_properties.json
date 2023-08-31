@@ -4,7 +4,8 @@
             "name": "Linux",
             "includePath": [
                 "${workspaceFolder}/**",
-                "/opt/ros/foxy/include/**"
+                "/opt/ros/foxy/include/**",
+                "/home/justin/ros2_ws/install/drone_interfaces/include/**"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",

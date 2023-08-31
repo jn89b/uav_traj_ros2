@@ -73,7 +73,7 @@ int main()
 
     //time the search
     auto start = std::chrono::high_resolution_clock::now();
-    std::vector<PositionVector> path = sparse_astar.searchPath();
+    std::vector<StateInfo> path = sparse_astar.searchPath();
     auto finish = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> elapsed = finish - start;
     printf("Elapsed time: %f\n", elapsed.count());

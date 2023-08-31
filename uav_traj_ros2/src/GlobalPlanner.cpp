@@ -12,11 +12,11 @@ GlobalPlanner::GlobalPlanner(SparseAstar& astar): Node("global_planner")
     
     this->sparse_astar_ = &astar;
 
-    path_pub_ = this->create_publisher<std_msgs::msg::String>(
-        "/my_published_msg", 10);
+    path_pub_ = this->create_publisher<drone_interfaces::msg::Waypoints>(
+        "/global_waypoints", 10);
         
     timer_ = this->create_wall_timer(
-    std::chrono::milliseconds(500), std::bind(&GlobalPlanner::publishPath, this));
+    std::chrono::milliseconds(1000), std::bind(&GlobalPlanner::publishPath, this));
 
     agent_pos_sub_ = this->create_subscription<std_msgs::msg::String>(
         "/my_published_msg", 10, std::bind(&GlobalPlanner::topicCallback, 
@@ -37,17 +37,28 @@ void GlobalPlanner::agentPosCb(
 
 void GlobalPlanner::publishPath()
 {
-    std::vector<PositionVector> path = sparse_astar_->searchPath();
+    std::vector<StateInfo> path = sparse_astar_->searchPath();
 
-    for (int i=0; i<path.size(); i++)
+    // drone_in
+    drone_interfaces::msg::Waypoints msg;
+
+    for (int i=0; i< int(path.size()); i++)
     {
-        RCLCPP_INFO(this->get_logger(), "Path point %d: %f, %f, %f", i, 
-            path[i].x, path[i].y, path[i].z);
-    }
+        geometry_msgs::msg::Point wp;
+        wp.x = path[i].pos.x;
+        wp.y = path[i].pos.y;
+        wp.z = path[i].pos.z;
+        msg.points.push_back(wp);
+        msg.heading.push_back(path[i].psi_dg);
 
-    std_msgs::msg::String message;
-    message.data = "HELLO WORLD number " + std::to_string(counter_++);
-    path_pub_->publish(message);
+        // RCLCPP_INFO(this->get_logger(), "Path point %d: %f, %f, %f", i, 
+        //     wp.x, wp.y, wp.z);
+    }
+    
+    // msg.points = waypoints;
+
+    path_pub_->publish(msg);
+    printf("Published path\n");
 }
 
 // -------------------------------------------------------------
