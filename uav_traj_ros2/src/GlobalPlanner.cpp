@@ -16,7 +16,7 @@ GlobalPlanner::GlobalPlanner(SparseAstar& astar): Node("global_planner")
         "/global_waypoints", 10);
         
     timer_ = this->create_wall_timer(
-    std::chrono::milliseconds(1000), std::bind(&GlobalPlanner::publishPath, this));
+    std::chrono::milliseconds(100), std::bind(&GlobalPlanner::publishPath, this));
 
     agent_pos_sub_ = this->create_subscription<std_msgs::msg::String>(
         "/my_published_msg", 10, std::bind(&GlobalPlanner::topicCallback, 
@@ -50,9 +50,7 @@ void GlobalPlanner::publishPath()
         wp.z = path[i].pos.z;
         msg.points.push_back(wp);
         msg.heading.push_back(path[i].psi_dg);
-
-        // RCLCPP_INFO(this->get_logger(), "Path point %d: %f, %f, %f", i, 
-        //     wp.x, wp.y, wp.z);
+        msg.pitch.push_back(path[i].theta_dg);
     }
     
     // msg.points = waypoints;

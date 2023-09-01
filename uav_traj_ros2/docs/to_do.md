@@ -1,7 +1,9 @@
 # To do 
 - [x] Migrate SAS to UAV trajectory ROS2 
 - [ ] Write a ROS2 node in cpp to provide waypoints based on location,heading, and leg constraints to get from one point to another
-- [ ] 
+- [x] Visualize waypoints with marker on rviz2
+- [ ] Refactor MPC code 
+- [ ] Have MPC trajectory visualized 
 
 
 

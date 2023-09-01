@@ -19,6 +19,7 @@ find_package(rclcpp REQUIRED)
 find_package(rclpy REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(drone_interfaces REQUIRED)
+find_package(visualization_msgs REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
 
 # messages
@@ -87,6 +88,7 @@ set(PLANNER
   src/PositionVector.cpp
   src/GlobalPlanner.cpp
 )
+
 # This is the global planner node
 add_executable(global_planner_node ${PLANNER} scripts/global_planner_node.cpp)
 target_include_directories(global_planner_node PUBLIC
@@ -104,14 +106,13 @@ install(TARGETS global_planner_node
 
 # ----------------- Python ------------------------------------
 # Install Python modules
-# ament_python_install_package(${PROJECT_NAME})
-# # Install Python executables
-# install(PROGRAMS
-#   scripts/drone_node.py
-#   scripts/MPCTrajNode.py
-#   scripts/MPCPlaneNode.py
-#   DESTINATION lib/${PROJECT_NAME}
-# )
+ament_python_install_package(${PROJECT_NAME})
+# Install Python executables
+install(PROGRAMS
+  scripts/waypoint_viz.py
+  scripts/fw_mpc_node.py
+  DESTINATION lib/${PROJECT_NAME}
+)
 
 
 ament_package()

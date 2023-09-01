@@ -5,8 +5,8 @@ int main(int argc, char **argv)
 {
     rclcpp::init(argc, argv);
 
-    PositionVector fw_pos(-250, -150, 0);
-    PositionVector goal_pos(750,750,25);
+    PositionVector fw_pos(-250, -150, 15);
+    PositionVector goal_pos(750, 750, 45);
     float radius_m = 5.0f;
     float theta_dg = 0.0f;
     float psi_dg = 180.0f;
