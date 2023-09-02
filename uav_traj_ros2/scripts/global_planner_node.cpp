@@ -5,8 +5,8 @@ int main(int argc, char **argv)
 {
     rclcpp::init(argc, argv);
 
-    PositionVector fw_pos(-250, -150, 15);
-    PositionVector goal_pos(750, 750, 45);
+    PositionVector fw_pos(-250, -150, 45);
+    PositionVector goal_pos(500, 500, 50);
     float radius_m = 5.0f;
     float theta_dg = 0.0f;
     float psi_dg = 180.0f;
@@ -55,12 +55,15 @@ int main(int argc, char **argv)
 
         Obstacle *obstacle = new Obstacle(x, y, z, 
             float(rand_radius), 1);
-        
+
+        gridmap.insertObstacle(obstacle);   
+
     }
 
     // node declaration of class GlobalPlanner passing the name of the node and the counter init value
     auto node = std::make_shared<GlobalPlanner>(sparse_astar);
     RCLCPP_INFO(node->get_logger(), "My Use Publisher Library ROS2 node started");
+
     rclcpp::spin(node);
 
     rclcpp::shutdown();

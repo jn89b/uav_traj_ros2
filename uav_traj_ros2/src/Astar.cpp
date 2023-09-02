@@ -575,6 +575,16 @@ PositionVector SparseAstar::index1DToPosition(int index)
 }
 
 // ----------------------------------------------------------------
+void SparseAstar::updateAgentPosition(const PositionVector& pos,
+    float theta_dg, float psi_dg)
+{
+    this->agent_->setPosition(pos);
+    this->agent_->setTheta(theta_dg);
+    this->agent_->setPsi(psi_dg);   
+    
+}
+
+// ----------------------------------------------------------------
 
 
 #ifdef ENABLE_DOCTEST_IN_LIBRARY

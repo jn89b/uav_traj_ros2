@@ -5,22 +5,41 @@
 // -------------------------------------------------------------
 // Constructor 
 // -------------------------------------------------------------
-GlobalPlanner::GlobalPlanner(SparseAstar& astar): Node("global_planner")
+GlobalPlanner::GlobalPlanner(SparseAstar& sparse_astar_): Node("global_planner")
 {
     counter_ = 0;
-    // int queue_size = 10;
-    
-    this->sparse_astar_ = &astar;
+
+    this->sparse_astar_ = &sparse_astar_;
 
     path_pub_ = this->create_publisher<drone_interfaces::msg::Waypoints>(
         "/global_waypoints", 10);
         
     timer_ = this->create_wall_timer(
-    std::chrono::milliseconds(100), std::bind(&GlobalPlanner::publishPath, this));
+        std::chrono::milliseconds(1000), 
+        std::bind(&GlobalPlanner::publishPath, 
+        this));
 
-    agent_pos_sub_ = this->create_subscription<std_msgs::msg::String>(
-        "/my_published_msg", 10, std::bind(&GlobalPlanner::topicCallback, 
+    agent_pos_sub_ = this->create_subscription<drone_interfaces::msg::Telem>(
+        "/enu_telem", 10, 
+        std::bind(&GlobalPlanner::agentPosCb, 
         this, std::placeholders::_1));
+
+    agent_traj_sub_ = this->create_subscription<drone_interfaces::msg::CtlTraj>(
+        "/trajectory", 10, 
+        std::bind(&GlobalPlanner::agentTrajCb, 
+        this, std::placeholders::_1));
+
+
+    // for now only publish obstacles once
+    obs_pub_ = this->create_publisher<drone_interfaces::msg::Waypoints>(
+        "/obs_positions", 10);
+
+    publishObstacles();
+
+    // timer_ = this->create_wall_timer(
+    //     std::chrono::milliseconds(10000), 
+    //     std::bind(&GlobalPlanner::publishObstacles, 
+    //     this));
 }
 
 // -------------------------------------------------------------
@@ -28,17 +47,67 @@ GlobalPlanner::GlobalPlanner(SparseAstar& astar): Node("global_planner")
 // -------------------------------------------------------------
 
 void GlobalPlanner::agentPosCb(
-    const std_msgs::msg::String::SharedPtr msg) const
+    const drone_interfaces::msg::Telem::SharedPtr msg) 
+{   
+    //
+    double x = round(msg->x); 
+    double y = round(msg->y);
+    double z = round(msg->z);
+
+    double psi_dg = msg->yaw * 180.0f / M_PI;
+    double theta_dg = msg->pitch * 180.0f / M_PI;
+        
+    // //replace agent_info_ with new agent info
+    // StateInfo new_agent_info = StateInfo(pos, theta_dg, psi_dg);
+    agent_info_.setState(x, y, z, theta_dg, psi_dg);
+
+}
+
+// -------------------------------------------------------------
+
+void GlobalPlanner::agentTrajCb(
+    const drone_interfaces::msg::CtlTraj::SharedPtr msg) 
 {
-    RCLCPP_INFO(this->get_logger(), "I heard: '%s'", msg->data.c_str());
+    // get last value to set as start set
+    float x = round(msg->y.back());
+    float y = round(msg->x.back()); 
+    float z = -round(msg->z.back());
+
+    float psi_dg = msg->yaw.back() * 180.0f / M_PI;
+    float theta_dg = msg->pitch.back() * 180.0f / M_PI;
+
+    // update traj info
+    // StateInfo traj_info_ = StateInfo(pos, theta_dg, psi_dg);
+    traj_info_.setState(x,y,z, theta_dg, psi_dg);
+
 }
 
 // -------------------------------------------------------------
 
 void GlobalPlanner::publishPath()
 {
-    std::vector<StateInfo> path = sparse_astar_->searchPath();
 
+    printf("Agent position: %f, %f, %f\n", 
+     sparse_astar_->getAgent()->getPosition().x,
+     sparse_astar_->getAgent()->getPosition().y,
+     sparse_astar_->getAgent()->getPosition().z);
+
+    if (traj_info_.psi_dg == -1000)
+    {
+        printf("No trajectory info\n");
+        sparse_astar_->updateAgentPosition(agent_info_.pos, 
+            agent_info_.theta_dg, agent_info_.psi_dg);
+    }
+    else{
+        printf("traj_info_ position: %f, %f, %f\n", 
+         traj_info_.pos.x,
+         traj_info_.pos.y,
+         traj_info_.pos.z);
+        sparse_astar_->updateAgentPosition(traj_info_.pos, 
+            traj_info_.theta_dg, traj_info_.psi_dg);
+    }
+
+    std::vector<StateInfo> path = sparse_astar_->searchPath();
     // drone_in
     drone_interfaces::msg::Waypoints msg;
 
@@ -53,19 +122,43 @@ void GlobalPlanner::publishPath()
         msg.pitch.push_back(path[i].theta_dg);
     }
     
-    // msg.points = waypoints;
-
     path_pub_->publish(msg);
     printf("Published path\n");
 }
 
 // -------------------------------------------------------------
 
-void GlobalPlanner::topicCallback(
-    const std_msgs::msg::String::SharedPtr msg) const
+void GlobalPlanner::publishObstacles()
 {
-    RCLCPP_INFO(this->get_logger(), "I heard: '%s'", msg->data.c_str());
+    // drone_in
+    drone_interfaces::msg::Waypoints msg;
+
+    const std::vector<Obstacle*> obs_list = sparse_astar_->
+            getGridMap()->getObstacles(); 
+
+    for (int i=0; i< int(obs_list.size()); i++)
+    {
+        geometry_msgs::msg::Point wp;
+
+        wp.x = obs_list[i]->getX();
+        wp.y = obs_list[i]->getY();
+        wp.z = obs_list[i]->getZ();
+        msg.points.push_back(wp);
+        msg.heading.push_back(obs_list[i]->getRadius());
+        msg.pitch.push_back(0);
+    }
+    
+    obs_pub_->publish(msg);
+    printf("size of obs list: %d\n", int(obs_list.size()));
+    printf("Published obstacles\n");
 }
+
+
+// void GlobalPlanner::topicCallback(
+//     const std_msgs::msg::String::SharedPtr msg) const
+// {
+//     RCLCPP_INFO(this->get_logger(), "I heard: '%s'", msg->data.c_str());
+// }
 
 // -------------------------------------------------------------
 

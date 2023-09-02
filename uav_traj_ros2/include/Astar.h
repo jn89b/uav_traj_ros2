@@ -223,6 +223,15 @@ class SparseAstar
         // Must have a GridMap and an Agent to begin
         // Refactor this class to use fw agent
         SparseAstar(GridMap& grid_map, FWAgent& agent);
+        
+        // update agent position 
+        void updateAgentPosition(const PositionVector& pos, 
+            float theta_dg, float psi_dg);
+
+        //get agent
+        FWAgent* getAgent() {return agent_;}
+
+        GridMap* getGridMap() {return grid_map_;}
 
         // returns the open set
         std::priority_queue<FWNode*, std::vector<FWNode*>, CompareNodeCost> 

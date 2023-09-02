@@ -25,7 +25,10 @@ def euler_from_quaternion(x:float, y:float, z:float, w:float) -> tuple:
         return roll_x, pitch_y, yaw_z # in radians
 
 
-def vector_euler_from_quaternion(x:np.ndarray, y:np.ndarray, z:np.ndarray, w:np.ndarray):
+def vector_euler_from_quaternion(x:np.ndarray, 
+                                 y:np.ndarray, 
+                                 z:np.ndarray, 
+                                 w:np.ndarray):
         """
         Convert a quaternion into euler angles (roll, pitch, yaw)
         roll is rotation around x in radians (counterclockwise)

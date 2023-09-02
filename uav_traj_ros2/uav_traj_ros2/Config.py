@@ -2,7 +2,7 @@
 import numpy as np
 
 # Since our simulation is huge, lets scale it down
-SCALE_SIM = 100
+SCALE_SIM = 25
 
 ## START 
 START_X = -250

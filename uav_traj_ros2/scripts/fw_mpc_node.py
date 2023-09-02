@@ -294,7 +294,8 @@ class MPCTrajFWPublisher(Node):
         self.psi_dg_list = []
 
         self.found_new_path = False
-        self.wp_index = 0
+        self.wp_buffer = 1
+        self.wp_index = 1
 
     def waypointCallback(self,msg:Waypoints)->None:
         """
@@ -306,8 +307,7 @@ class MPCTrajFWPublisher(Node):
         waypoints and see if they are the same disregarding,
         the first waypoint or the second waypoint 
         """
-
-        # check if waypoint list is empty
+        print("waypoint callback")
         if len(self.waypoint_list) == 0:            
             for wp in msg.points:
                 self.waypoint_list.append(wp)
@@ -316,6 +316,7 @@ class MPCTrajFWPublisher(Node):
             
         # new path
         if self.waypoint_list[2:] != msg.points[2:]:
+            print("new path")
             self.waypoint_list = []
             for wp in msg.points:
                 self.waypoint_list.append(wp)
@@ -326,7 +327,7 @@ class MPCTrajFWPublisher(Node):
         # not a new path
         if self.waypoint_list[2:] == msg.points[2:]:
             self.found_new_path = False
-
+        
     def get_next_goal_point(self) -> StateInfo:
         """
         get_next_goal_point returns the next goal point 
@@ -336,16 +337,15 @@ class MPCTrajFWPublisher(Node):
         Otherwise we increment the waypoint index
         
         """
-        
+  
         if len(self.waypoint_list) == 0:
             print("We have no waypoints")
-            return
+            return None
         
-
         state_info = StateInfo()
         
         if self.found_new_path == True:
-            self.wp_index = 0
+            self.wp_index = self.wp_buffer
             #need to do a checking mechanism here if I'm between
             if len(self.waypoint_list) == 1:
                 state_info.x = self.waypoint_list[0].x
@@ -354,7 +354,7 @@ class MPCTrajFWPublisher(Node):
                 state_info.phi = 0
                 state_info.psi = np.deg2rad(self.waypoint_list[0].psi_dg)
                 state_info.theta = np.deg2rad(self.waypoint_list[0].theta_dg)
-                self.wp_index = 0
+                self.wp_index = self.wp_buffer
 
                 return state_info
 
@@ -365,19 +365,20 @@ class MPCTrajFWPublisher(Node):
                 state_info.phi = 0
                 state_info.psi = np.deg2rad(self.psi_dg_list[self.wp_index+1])
                 state_info.theta = np.deg2rad(self.theta_dg_list[self.wp_index+1])
-                self.wp_index = 0
+                self.wp_index = self.wp_buffer
                 
                 return state_info
             
-        # if self.found_new_path == False:
-        state_info.x = self.waypoint_list[self.wp_index+1].x
-        state_info.y = self.waypoint_list[self.wp_index+1].y
-        state_info.z = self.waypoint_list[self.wp_index+1].z
+        print("continuing waypoints: ", self.waypoint_list)
+        state_info.x = self.waypoint_list[self.wp_index].x
+        state_info.y = self.waypoint_list[self.wp_index].y
+        state_info.z = self.waypoint_list[self.wp_index].z
         state_info.phi = 0
         state_info.psi = np.deg2rad(self.psi_dg_list[self.wp_index+1])
         state_info.theta = np.deg2rad(self.theta_dg_list[self.wp_index+1])
         # next_wp = self.waypoint_list[self.wp_index+1]
         self.wp_index += 1
+
         return state_info
 
     def initHistory(self) -> None:
@@ -454,6 +455,7 @@ class MPCTrajFWPublisher(Node):
         """
         ENU 
         """
+
         self.state_info[0] = msg.pose.pose.position.x
         self.state_info[1] = msg.pose.pose.position.y
         self.state_info[2] = msg.pose.pose.position.z
@@ -468,11 +470,12 @@ class MPCTrajFWPublisher(Node):
 
         self.state_info[3] = roll
         self.state_info[4] = pitch
-        self.state_info[5] = yaw  # (yaw+ (2*np.pi) ) % (2*np.pi);
+        self.state_info[5] = yaw
 
         vx = msg.twist.twist.linear.x
         vy = msg.twist.twist.linear.y
         vz = msg.twist.twist.linear.z
+        
         #get magnitude of velocity
         self.state_info[6] = np.sqrt(vx**2 + vy**2 + vz**2)
         #self.state_info[6] = #msg.twist.twist.linear.x
@@ -554,30 +557,34 @@ def initFWMPC() -> AirplaneSimpleModelMPC:
     simple_airplane_model.set_state_space()
     
     airplane_params = {
-        'u_psi_min': np.deg2rad(-45), #rates
-        'u_psi_max': np.deg2rad(45), #
+        'u_psi_min': np.deg2rad(-60), #rates
+        'u_psi_max': np.deg2rad(60), #
         'u_phi_min': np.deg2rad(-45),
         'u_phi_max': np.deg2rad(45),
         'u_theta_min': np.deg2rad(-10),
         'u_theta_max': np.deg2rad(10),
         'z_min': 5.0,
-        'z_max': 100.0,
-        'v_cmd_min': 18,
-        'v_cmd_max': 22,
+        'z_max': 30.0,
+        'v_cmd_min': 15,
+        'v_cmd_max': 20,
         'theta_min': np.deg2rad(-10),
         'theta_max': np.deg2rad(10),
         'phi_min': np.deg2rad(-45),
-        'phi_max': np.deg2rad(45),
-        'effector': Effector(effector_range=10)
+        'phi_max': np.deg2rad(45)
+        # 'effector': Effector(effector_range=10)
     }
-    
+
     Q = ca.diag([1.0, 1.0, 0.75, 1.0, 1.0, 1.0, 1.0])
-    R = ca.diag([0.5, 1.0, 1.0, 1.0])
+    R = ca.diag([2.0, 3.0, 1.0, 3.0])
+
+    # Q = ca.diag([1.0, 1.0, 1.0, 0.75, 0.75, 0.75, 0.5])
+    # R = ca.diag([2.0, 3.0, 1.0, 3.0])
+
 
     simple_mpc_fw_params = {
         'model': simple_airplane_model,
         'dt_val': 0.1,
-        'N': 25,
+        'N': 15,
         'Q': Q,
         'R': R
     }
@@ -592,20 +599,27 @@ def main(args=None):
 
     control_idx = 10
     state_idx = 5
-    dist_error_tol = 5.0
     idx_buffer = 5
 
     fw_mpc = initFWMPC()
     mpc_traj_node = MPCTrajFWPublisher()
-    rclpy.spin_once(mpc_traj_node)
+    
+    rclpy.spin_once(mpc_traj_node, timeout_sec=3.0)
 
-    goal_z = 45
     dist_error_tol = 20
-
     desired_state_info = mpc_traj_node.get_next_goal_point()
-    print("desired state: ", desired_state_info.x,
-          desired_state_info.y, desired_state_info.z,
-          desired_state_info.psi, desired_state_info.theta, desired_state_info.phi)
+
+    # if desired_state_info == None:
+    #     rclpy.spin_once(mpc_traj_node, timeout_sec=3.0)
+    #     desired_state_info = mpc_traj_node.get_next_goal_point()
+
+    if desired_state_info == None:
+        while desired_state_info == None:
+            print("getting waypoints")
+            rclpy.spin_once(mpc_traj_node, timeout_sec=3.0)
+            desired_state_info = mpc_traj_node.get_next_goal_point()
+
+
     desired_state = [
             desired_state_info.x, 
             desired_state_info.y,
@@ -614,6 +628,8 @@ def main(args=None):
             desired_state_info.theta, 
             desired_state_info.psi, 
             desired_state_info.v]
+
+    print("desired state: ", desired_state)
 
     #get the time to find solution 
     start_time = time.time()
@@ -628,7 +644,7 @@ def main(args=None):
     traj_state, traj_control = fw_mpc.get_state_control_ref(
         traj_dictionary, state_idx, control_idx)
 
-    print("traj state: ", traj_state)
+    # print("traj state: ", traj_state)
     end_time = time.time()
 
     control_idx = fw_mpc.set_state_control_idx(fw_mpc.mpc_params, 
@@ -640,20 +656,17 @@ def main(args=None):
     mpc_traj_node.publishTrajectory(traj_dictionary, state_idx, control_idx)
 
     while rclpy.ok():
-        print("state info: ", mpc_traj_node.state_info)
-        ref_state_error = mpc_traj_node.computeError(
-            mpc_traj_node.state_info, traj_state)
           
         rclpy.spin_once(mpc_traj_node)
         
         #predict the next state
-        offset_state = [mpc_traj_node.state_info[0], #+ ref_state_error[0]/1.5,
-                        mpc_traj_node.state_info[1], #+ ref_state_error[1]/1.5,
-                        mpc_traj_node.state_info[2], #+ ref_state_error[2]/1.5,
-                        mpc_traj_node.state_info[3], #+ ref_state_error[3]/1.5, 
-                        mpc_traj_node.state_info[4], #+ ref_state_error[4]/1.5,
-                        mpc_traj_node.state_info[5], #+ ref_state_error[5]/1.5, 
-                        mpc_traj_node.state_info[6]] #+ ref_state_error[6]/1.5]
+        offset_state = [mpc_traj_node.state_info[0], 
+                        mpc_traj_node.state_info[1], 
+                        mpc_traj_node.state_info[2], 
+                        mpc_traj_node.state_info[3],  
+                        mpc_traj_node.state_info[4], 
+                        mpc_traj_node.state_info[5],  
+                        mpc_traj_node.state_info[6]] 
         
         fw_mpc.reinitStartGoal(offset_state, desired_state)
         start_time = time.time()
@@ -673,9 +686,6 @@ def main(args=None):
         traj_dictionary = fw_mpc.returnTrajDictionary(
             projected_controls, projected_states)
 
-        traj_state, traj_control = fw_mpc.get_state_control_ref(
-            traj_dictionary, state_idx, control_idx)
-
         mpc_traj_node.publishTrajectory(traj_dictionary, 
                                         state_idx, 
                                         control_idx)
@@ -688,6 +698,8 @@ def main(args=None):
         print("distance error: ", distance_error)
         print("\n")
 
+        # update this obstacle to use KNN to find closest  
+        # obstacles within the vicinty, need to update the constraints
         if Config.OBSTACLE_AVOID:
             #check if within obstacle SD
             # rclpy.spin_once(mpc_traj_node)
@@ -696,7 +708,6 @@ def main(args=None):
             current_y = mpc_traj_node.state_info[1]
 
             # if isCollision(current_x, current_y) == True:
-
             #     print("trajectory x", traj_dictionary['x'])
             #     print("trajectory y", traj_dictionary['y'])
             #     #send 0 velocity command
@@ -717,27 +728,21 @@ def main(args=None):
             refactor add the length of N of commands to 
             stay where you are at 
             """
-            #send 0 velocity command
-            # ref_state_error = [0.0, 0.0, 0.0, 0.0]
-            # ref_control_error = [0.0, 0.0, 0.0, 0.0]
-            mpc_traj_node.savePickle('test')
-            mpc_traj_node.publishTrajectory(traj_dictionary, 
-                                            state_idx, 
-                                            control_idx)
+            desired_state_info = mpc_traj_node.get_next_goal_point()
+            desired_state = [
+                desired_state_info.x, 
+                desired_state_info.y,
+                desired_state_info.z, 
+                desired_state_info.phi, 
+                desired_state_info.theta, 
+                desired_state_info.psi, 
+                desired_state_info.v]
+            
+            print("going to next goal point: ", desired_state)
 
-
-            mpc_traj_node.destroy_node()
-            rclpy.shutdown()
-            return 
-
-        desired_state = [
-                Config.GOAL_X, 
-                Config.GOAL_Y,
-                goal_z, 
-                mpc_traj_node.state_info[3], 
-                mpc_traj_node.state_info[4], 
-                mpc_traj_node.state_info[5], 
-                mpc_traj_node.state_info[6]]
+            #mpc_traj_node.destroy_node()
+            #rclpy.shutdown()
+            #return 
 
         # rclpy.spin_once(mpc_traj_node)
 

@@ -19,6 +19,10 @@ class PositionVector
         inline const PositionVector operator+ (const PositionVector& v) 
             const { return PositionVector(x + v.x, y + v.y, z+v.z); }
 
+        void setX(double x) {this->x = x;}
+        void setY(double y) {this->y = y;}
+        void setZ(double z) {this->z = z;}
+
         //returns the change 
 		static PositionVector getDelta(const PositionVector& v1, const PositionVector& v2) 
         { return PositionVector(abs(v1.x - v2.x), abs(v1.y - v2.y), abs(v1.z - v2.z));}
@@ -27,14 +31,12 @@ class PositionVector
         double y;
         double z;
 
-
 };
 
 
 // Used to represent the state of the agent 
 class StateInfo
 {   
-
     public: 
 
         // This is me being lazy
@@ -45,9 +47,15 @@ class StateInfo
         StateInfo(double x, double y, double z, double theta_dg, double psi_dg);
         
         StateInfo(PositionVector& pos, double theta_dg, double psi_dg);
-
+    
         const PositionVector getPostionVector() {return pos;}
         const double getThetaDg() {return theta_dg;}
         const double getPsiDg() {return psi_dg;}
+
+        //set values of state
+        void setState(double x, double y, double z, 
+            double theta_dg, double psi_dg);
+
+        // void setState(PositionVector& pos, double theta_dg, double psi_dg);
 
 };

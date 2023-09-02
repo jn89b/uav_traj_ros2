@@ -133,7 +133,7 @@ class FWAgent
             double agent_radius=0.0f, 
             float theta_dg=0.0f,
             float psi_dg=0.0f, 
-            float max_psi_turn_dg=45.0f,
+            float max_psi_turn_dg=25.0f,
             float leg_segment_m=5.0f);
         
         void setMaxPsiTurnDg(float max_psi_turn_dg) 

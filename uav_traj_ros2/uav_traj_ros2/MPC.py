@@ -140,8 +140,6 @@ class MPC():
 
     def initSolver(self):
         
-        # self.solver = None
-
         nlp_prob = {
             'f': self.cost_fn,
             'x': self.OPT_variables,

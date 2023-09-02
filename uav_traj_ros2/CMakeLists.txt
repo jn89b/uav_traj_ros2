@@ -80,8 +80,6 @@ ament_target_dependencies(
 install(TARGETS main_node
   DESTINATION lib/${PROJECT_NAME})
 
-
-
 set(PLANNER
   src/Astar.cpp
   src/GridMap.cpp
@@ -90,17 +88,21 @@ set(PLANNER
 )
 
 # This is the global planner node
-add_executable(global_planner_node ${PLANNER} scripts/global_planner_node.cpp)
+add_executable(global_planner_node ${PLANNER} 
+  scripts/global_planner_node.cpp)
+
 target_include_directories(global_planner_node PUBLIC
   "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
   "$<INSTALL_INTERFACE:include>"
   ${rclcpp_INCLUDE_DIRS}
 )
+
 ament_target_dependencies(
   global_planner_node
   "rclcpp"
   drone_interfaces
 )
+
 install(TARGETS global_planner_node
   DESTINATION lib/${PROJECT_NAME})
 
@@ -113,7 +115,6 @@ install(PROGRAMS
   scripts/fw_mpc_node.py
   DESTINATION lib/${PROJECT_NAME}
 )
-
 
 ament_package()
 

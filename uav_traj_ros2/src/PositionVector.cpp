@@ -22,3 +22,12 @@ StateInfo::StateInfo(PositionVector& pos, double theta_dg, double psi_dg)
     this->theta_dg = theta_dg;
     this->psi_dg = psi_dg;
 }
+
+void StateInfo::setState(double x, double y, double z, 
+    double theta_dg, double psi_dg)
+{
+    this->pos = PositionVector(x, y, z);
+    this->theta_dg = theta_dg;
+    this->psi_dg = psi_dg;
+}
+
