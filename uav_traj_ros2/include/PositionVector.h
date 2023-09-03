@@ -43,10 +43,13 @@ class StateInfo
         PositionVector pos = PositionVector(0, 0, 0);
         double theta_dg;
         double psi_dg;
+        double phi_dg;
 
-        StateInfo(double x, double y, double z, double theta_dg, double psi_dg);
+        StateInfo(double x, double y, double z, 
+            double phi_dg, double theta_dg, double psi_dg);
         
-        StateInfo(PositionVector& pos, double theta_dg, double psi_dg);
+        StateInfo(PositionVector& pos, 
+            double phi_dg, double theta_dg, double psi_dg);
     
         const PositionVector getPostionVector() {return pos;}
         const double getThetaDg() {return theta_dg;}

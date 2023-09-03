@@ -94,11 +94,13 @@ struct FWNode
     float h;
 
     PositionVector direction_vec;
+    float phi_dg;
     float theta_dg;
     float psi_dg;
     int index;
 
-    void setDirectionVec();
+    void setDirectionVec(float velocity=17.0f, 
+        float prev_psi_dg=0.0f);
 
     bool operator==(const FWNode* OtherNode)
     {
@@ -263,6 +265,7 @@ class SparseAstar
     private:
         GridMap* grid_map_ = NULL;
         FWAgent* agent_ = NULL; // FW agent
+        
         
         /// @brief Calculates the heuristic value of a node
         std::priority_queue<FWNode*, std::vector<FWNode*>, CompareNodeCost> 

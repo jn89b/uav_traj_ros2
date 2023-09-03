@@ -14,7 +14,6 @@ GlobalPlanner::GlobalPlanner(SparseAstar& sparse_astar_): Node("global_planner")
     path_pub_ = this->create_publisher<drone_interfaces::msg::Waypoints>(
         "/global_waypoints", 10);
         
-
     timer_ = this->create_wall_timer(
         std::chrono::milliseconds(1000), 
         std::bind(&GlobalPlanner::publishPath, 
@@ -131,6 +130,7 @@ void GlobalPlanner::publishPath()
             // rotate by 90 degrees and wrap to 360 
             double psi_wrap = path[i].psi_dg + 90 % 360;
             msg.heading.push_back(psi_wrap);
+            msg.roll.push_back(path[i].phi_dg);
             msg.pitch.push_back(path[i].theta_dg);
         }
         

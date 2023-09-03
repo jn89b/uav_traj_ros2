@@ -28,8 +28,8 @@ class GlobalPlanner : public rclcpp::Node
         int counter_;
         SparseAstar* sparse_astar_ = NULL;
 
-        StateInfo agent_info_ = StateInfo(0, 0, 0, 0, 0);
-        StateInfo traj_info_ = StateInfo(0, 0, 0, -1000, -1000);
+        StateInfo agent_info_ = StateInfo(0, 0, 0,0, 0, 0);
+        StateInfo traj_info_ = StateInfo(0, 0, 0, -1000, -1000, -1000);
 
         // drone_in
         drone_interfaces::msg::Waypoints old_path_msg;

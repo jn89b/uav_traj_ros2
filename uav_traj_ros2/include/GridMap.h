@@ -181,7 +181,7 @@ class FWAgent
         // return a vector of possible moves in 3D
         std::vector<PositionVector> getMoves3D(
             PositionVector current_pos, float curr_psi_dg,
-            int step_psi_dg=5);
+            int step_psi_dg=2);
 
 };
 

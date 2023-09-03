@@ -9,16 +9,19 @@ PositionVector::PositionVector(double x, double y, double z)
 
 
 StateInfo::StateInfo(double x, double y, double z, 
-    double theta_dg, double psi_dg)
+    double phi_dg, double theta_dg, double psi_dg)
 {
     this->pos = PositionVector(x, y, z);
+    this->phi_dg = phi_dg;
     this->theta_dg = theta_dg;
     this->psi_dg = psi_dg;
 }
 
-StateInfo::StateInfo(PositionVector& pos, double theta_dg, double psi_dg)
+StateInfo::StateInfo(PositionVector& pos,
+    double phi_dg, double theta_dg, double psi_dg)
 {
     this->pos = pos;
+    this->phi_dg = phi_dg;
     this->theta_dg = theta_dg;
     this->psi_dg = psi_dg;
 }

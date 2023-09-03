@@ -5,12 +5,12 @@ int main(int argc, char **argv)
 {
     rclcpp::init(argc, argv);
 
-    PositionVector fw_pos(-250, -150, 45);
-    PositionVector goal_pos(500, 500, 50);
+    PositionVector fw_pos(-250, -150, 25);
+    PositionVector goal_pos(500, 500, 45);
     float radius_m = 5.0f;
     float theta_dg = 0.0f;
     float psi_dg = 180.0f;
-    float max_psi_turn_dg = 15.0f;
+    float max_psi_turn_dg = 20.0f;
     float max_leg_segment_m = 30;
     FWAgent fw_agent(fw_pos, goal_pos, 
         radius_m, theta_dg, 

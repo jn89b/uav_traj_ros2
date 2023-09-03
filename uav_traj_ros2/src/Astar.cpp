@@ -14,7 +14,7 @@ namespace utils
     }
 }; 
 
-void FWNode::setDirectionVec()
+void FWNode::setDirectionVec(float velocity_m, float prev_psi_dg)
 {
     if (parent.x == -1 && parent.y == -1 && parent.z == -1)
     {
@@ -37,6 +37,12 @@ void FWNode::setDirectionVec()
         
         float psi_rad = atan2(direction_vec.y, direction_vec.x);
         psi_dg = utils::rad2deg(psi_rad);
+
+        float delta_psi_rad = utils::deg2rad(psi_dg-prev_psi_dg);
+        
+        float phi_rad = atan((delta_psi_rad*velocity_m)/9.81);
+        phi_dg = utils::rad2deg(phi_rad);
+
     }
 
 }
@@ -147,7 +153,7 @@ std::vector<StateInfo> Astar::getPath(const Node* final_node)
     auto current_node = final_node;
     
     StateInfo state(final_node->pos.x, final_node->pos.y, 
-        final_node->pos.z, 0.0f, 0.0f);
+        final_node->pos.z, 0.0f, 0.0f, 0.0f);
 
     // state.pos = current_node->pos;
     path.push_back(state);
@@ -160,7 +166,7 @@ std::vector<StateInfo> Astar::getPath(const Node* final_node)
     {
         StateInfo state = StateInfo(current_node->parent.x,
             current_node->parent.y, current_node->parent.z, 
-            0.0f, 0.0f);
+            0.0f, 0.0f, 0.0f);
 
         path.push_back(state);
         //path.push_back(current_node->parent);
@@ -340,7 +346,7 @@ std::vector<StateInfo> SparseAstar::searchPath()
     initializeNodes();
 
     // need to have this as a parameter 
-    int max_iter = 10000;
+    int max_iter = 5000;
     int iter = 0;   
     
     // need time limit too 
@@ -402,7 +408,8 @@ std::vector<StateInfo> SparseAstar::searchPath()
                 agent_->getGoalPosition());
             neigh_node->f = neigh_node->g + neigh_node->h; 
             neigh_node->index = positionToIndex1D(neigh_node->pos);
-            neigh_node->setDirectionVec();
+            float curr_psi_dg = current_node->psi_dg;
+            neigh_node->setDirectionVec(22.0f, curr_psi_dg);
             open_set.push(neigh_node);       
         }
 
@@ -428,6 +435,7 @@ std::vector<StateInfo> SparseAstar::getPath(
     StateInfo state(final_node->pos.x, 
         final_node->pos.y, 
         final_node->pos.z, 
+        final_node->phi_dg,
         final_node->theta_dg, 
         final_node->psi_dg);
 
@@ -442,7 +450,8 @@ std::vector<StateInfo> SparseAstar::getPath(
 
         StateInfo state(current_node->pos.x, 
             current_node->pos.y, 
-            current_node->pos.z, 
+            current_node->pos.z,
+            current_node->phi_dg, 
             current_node->theta_dg, 
             current_node->psi_dg);
 

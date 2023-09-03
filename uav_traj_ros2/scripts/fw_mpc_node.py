@@ -186,6 +186,9 @@ class AirplaneSimpleModelMPC(MPC):
         self.lbx['X'][4, :] = self.airplane_params['theta_min']
         self.ubx['X'][4, :] = self.airplane_params['theta_max']
 
+        self.lbx['X'][6, :] = self.airplane_params['airspeed_min']
+        self.ubx['X'][6, :] = self.airplane_params['airspeed_max']
+
     def returnTrajDictionary(self, 
         projected_controls:list,
         projected_states:list) -> dict:
@@ -275,7 +278,7 @@ class MPCTrajFWPublisher(Node):
                            0, # phi
                            0, # theta
                            np.deg2rad(180), # psi
-                           0  # airspeed
+                           18  # airspeed
                            ]
         
         self.control_info = [0, # u_phi
@@ -301,6 +304,7 @@ class MPCTrajFWPublisher(Node):
         self.waypoint_list = []
         self.theta_dg_list = []
         self.psi_dg_list = []
+        self.phi_dg_list = []
 
         self.found_new_path = False
         self.wp_buffer = 2
@@ -321,7 +325,8 @@ class MPCTrajFWPublisher(Node):
                 self.waypoint_list.append(wp)
                 self.theta_dg_list = list(msg.pitch)
                 self.psi_dg_list = list(msg.heading)
-            
+                self.phi_dg_list = list(msg.roll)
+
         # new path
         if self.waypoint_list != msg.points:
             self.found_new_path = True
@@ -330,6 +335,7 @@ class MPCTrajFWPublisher(Node):
                 self.waypoint_list.append(wp)
             self.theta_dg_list = list(msg.pitch)
             self.psi_dg_list = list(msg.heading)
+            self.phi_dg_list = list(msg.roll)
         # not a new path
         else:
             self.found_new_path = False
@@ -358,7 +364,7 @@ class MPCTrajFWPublisher(Node):
                 state_info.x = self.waypoint_list[0].x
                 state_info.y = self.waypoint_list[0].y
                 state_info.z = self.waypoint_list[0].z
-                state_info.phi = 0
+                state_info.phi = np.deg2rad(self.phi_dg_list[0])
                 state_info.psi = np.deg2rad(self.psi_dg_list[0])
                 state_info.theta = np.deg2rad(self.theta_dg_list[0])
                 self.wp_index = self.wp_buffer
@@ -376,7 +382,7 @@ class MPCTrajFWPublisher(Node):
         state_info.x = self.waypoint_list[self.wp_index].x
         state_info.y = self.waypoint_list[self.wp_index].y
         state_info.z = self.waypoint_list[self.wp_index].z
-        state_info.phi = 0
+        state_info.phi = np.deg2rad(self.phi_dg_list[self.wp_index+1])
         state_info.psi = np.deg2rad(self.psi_dg_list[self.wp_index+1])
         state_info.theta = np.deg2rad(self.theta_dg_list[self.wp_index+1])
 
@@ -511,7 +517,7 @@ class MPCTrajFWPublisher(Node):
         return error
     
     def publishTrajectory(self, traj_dictionary:dict, 
-                          state_idx:int, command_idx:int) -> None:
+                          state_idx:int, command_idx:int) -> float:
         """
         publishTrajectory
         
@@ -525,6 +531,8 @@ class MPCTrajFWPublisher(Node):
         traj_phi = np.array(traj_dictionary['phi'])
         traj_theta = -np.array(traj_dictionary['theta'])
         traj_psi = np.array(traj_dictionary['psi'])
+
+        traj_v = np.array(traj_dictionary['v'])
 
         traj_u_phi = np.array(traj_dictionary['u_phi'])
         traj_u_theta = -np.array(traj_dictionary['u_theta'])
@@ -546,7 +554,7 @@ class MPCTrajFWPublisher(Node):
         traj_msg.roll_rate = list(traj_u_phi[0])
         traj_msg.pitch_rate = list(traj_u_theta[0])
         traj_msg.yaw_rate = list(traj_u_psi[0])
-        traj_msg.vx = list(traj_v_cmd[0])
+        traj_msg.vx = list(traj_v[0])
         
         traj_msg.idx = state_idx
 
@@ -560,6 +568,10 @@ class MPCTrajFWPublisher(Node):
         self.idx_history.append(state_idx)
         self.traj_pub.publish(traj_msg)
 
+        print("trajectory", traj_phi[0][state_idx])
+        return traj_phi[0][state_idx+1]
+
+
 
 def initFWMPC() -> AirplaneSimpleModelMPC:
 
@@ -569,23 +581,25 @@ def initFWMPC() -> AirplaneSimpleModelMPC:
     airplane_params = {
         'u_psi_min': np.deg2rad(-35), #rates
         'u_psi_max': np.deg2rad(35), #
-        'u_phi_min': np.deg2rad(-45),
-        'u_phi_max': np.deg2rad(45),
+        'u_phi_min': np.deg2rad(-55),
+        'u_phi_max': np.deg2rad(55),
         'u_theta_min': np.deg2rad(-10),
         'u_theta_max': np.deg2rad(10),
         'z_min': 10,
-        'z_max': 65,
-        'v_cmd_min': 20,
-        'v_cmd_max': 26,
+        'z_max': 65,    
+        'v_cmd_min': 15,
+        'v_cmd_max': 25,
         'theta_min': np.deg2rad(-10),
         'theta_max': np.deg2rad(10),
         'phi_min': np.deg2rad(-55),
-        'phi_max': np.deg2rad(55)
-        # 'effector': Effector(effector_range=10)
+        'phi_max': np.deg2rad(55),
+        'airspeed_min': 15,
+        'airspeed_max': 23,
     }
 
+
     Q = ca.diag([1.0, 1.0, 0.5, 1.0, 1.0, 1.0, 1.0])
-    R = ca.diag([0.5, 0.8, 1.0, 1.0])
+    R = ca.diag([0.5, 0.8, 0.5, 1.0])
 
     simple_mpc_fw_params = {
         'model': simple_airplane_model,
@@ -605,7 +619,7 @@ def main(args=None):
 
     control_idx = 10
     state_idx = 5
-    idx_buffer = 0
+    idx_buffer = 1
 
     fw_mpc = initFWMPC()
     mpc_traj_node = MPCTrajFWPublisher()
@@ -615,22 +629,19 @@ def main(args=None):
     dist_error_tol = 40 
     desired_state_info = mpc_traj_node.get_next_goal_point()
 
-    # if desired_state_info == None:
-    #     rclpy.spin_once(mpc_traj_node, timeout_sec=3.0)
-    #     desired_state_info = mpc_traj_node.get_next_goal_point()
-
     if desired_state_info == None:
         while desired_state_info == None:
             print("getting waypoints")
             rclpy.spin_once(mpc_traj_node, timeout_sec=3.0)
             desired_state_info = mpc_traj_node.get_next_goal_point()
 
+    desired_phi = mpc_traj_node.state_info[3]
 
     desired_state = [
             desired_state_info.x, 
             desired_state_info.y,
             desired_state_info.z, 
-            mpc_traj_node.state_info[3], # need to update this 
+            desired_state_info.phi, # need to update this 
             desired_state_info.theta, 
             desired_state_info.psi, 
             desired_state_info.v] 
@@ -656,7 +667,10 @@ def main(args=None):
     state_idx = fw_mpc.set_state_control_idx(fw_mpc.mpc_params,
         end_time - start_time, idx_buffer)
 
-    mpc_traj_node.publishTrajectory(traj_dictionary, state_idx, control_idx)
+    mpc_traj_node.publishTrajectory(
+        traj_dictionary, 
+        state_idx, 
+        control_idx)
 
     while rclpy.ok():
           
@@ -678,7 +692,7 @@ def main(args=None):
                 desired_state_info.x, 
                 desired_state_info.y,
                 desired_state_info.z, 
-                mpc_traj_node.state_info[3], 
+                desired_state_info.phi, 
                 desired_state_info.theta, 
                 desired_state_info.psi, 
                 desired_state_info.v]
@@ -704,12 +718,12 @@ def main(args=None):
             end_time - start_time, idx_buffer=idx_buffer)
 
         state_idx = fw_mpc.set_state_control_idx(fw_mpc.mpc_params,
-            end_time - start_time, idx_buffer=idx_buffer)
+            end_time - start_time, idx_buffer=idx_buffer, use_buffer=True)
 
         traj_dictionary = fw_mpc.returnTrajDictionary(
             projected_controls, projected_states)
 
-        mpc_traj_node.publishTrajectory(traj_dictionary, 
+        desired_phi = mpc_traj_node.publishTrajectory(traj_dictionary, 
                                         state_idx, 
                                         control_idx)
         
@@ -743,10 +757,9 @@ def main(args=None):
             #                                     state_idx, 
             #                                     control_idx)
 
-
-            #     # mpc_traj_node.destroy_node()
-            #     # rclpy.shutdown()
-            #     # return
+                # mpc_traj_node.destroy_node()
+                # rclpy.shutdown()
+                # return
 
         if distance_error < dist_error_tol:
             """
@@ -758,7 +771,7 @@ def main(args=None):
                 desired_state_info.x, 
                 desired_state_info.y,
                 desired_state_info.z, 
-                mpc_traj_node.state_info[3], 
+                desired_state_info.phi, 
                 desired_state_info.theta, 
                 desired_state_info.psi, 
                 desired_state_info.v]
