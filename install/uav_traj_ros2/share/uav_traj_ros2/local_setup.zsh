@@ -1,1 +1,0 @@
-/home/justin/ros2_ws/src/uav_traj_ros2/build/uav_traj_ros2/ament_cmake_environment_hooks/local_setup.zsh

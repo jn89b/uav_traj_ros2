@@ -1,1 +1,0 @@
-/usr/bin/c++     CMakeFiles/sas_main.dir/src/Astar.cpp.o CMakeFiles/sas_main.dir/src/GridMap.cpp.o CMakeFiles/sas_main.dir/src/PositionVector.cpp.o CMakeFiles/sas_main.dir/scripts/main_sas.cpp.o  -o sas_main 
