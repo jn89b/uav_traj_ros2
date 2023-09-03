@@ -1,0 +1,50 @@
+[35m[1mScanning dependencies of target sas_main[0m
+[35m[1mScanning dependencies of target global_planner_node[0m
+[ 14%] [32mBuilding CXX object CMakeFiles/sas_main.dir/src/Astar.cpp.o[0m
+[ 14%] [32mBuilding CXX object CMakeFiles/sas_main.dir/scripts/main_sas.cpp.o[0m
+[ 35%] Built target main_node
+[ 42%] [32mBuilding CXX object CMakeFiles/global_planner_node.dir/src/Astar.cpp.o[0m
+[ 50%] [32mBuilding CXX object CMakeFiles/global_planner_node.dir/scripts/global_planner_node.cpp.o[0m
+[ 57%] [32mBuilding CXX object CMakeFiles/global_planner_node.dir/src/GlobalPlanner.cpp.o[0m
+[ 64%] [32m[1mLinking CXX executable sas_main[0m
+[ 78%] Built target sas_main
+[ 85%] [32m[1mLinking CXX executable global_planner_node[0m
+[100%] Built target global_planner_node
+-- Install configuration: ""
+-- Execute custom install script
+-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/lib/uav_traj_ros2/sas_main
+-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/lib/uav_traj_ros2/main_node
+-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/lib/uav_traj_ros2/global_planner_node
+-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/share/uav_traj_ros2/environment/pythonpath.sh
+-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/share/uav_traj_ros2/environment/pythonpath.dsv
+-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/lib/python3.8/site-packages/uav_traj_ros2/CasadiModels/AirplaneModel.py
+-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/lib/python3.8/site-packages/uav_traj_ros2/CasadiModels/__init__.py
+-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/lib/python3.8/site-packages/uav_traj_ros2/Config.py
+-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/lib/python3.8/site-packages/uav_traj_ros2/MPC.py
+-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/lib/python3.8/site-packages/uav_traj_ros2/__init__.py
+-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/lib/python3.8/site-packages/uav_traj_ros2/quaternion_tools.py
+-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/lib/uav_traj_ros2/waypoint_viz.py
+-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/lib/uav_traj_ros2/fw_mpc_node.py
+-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/share/ament_index/resource_index/package_run_dependencies/uav_traj_ros2
+-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/share/ament_index/resource_index/parent_prefix_path/uav_traj_ros2
+-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/share/uav_traj_ros2/environment/ament_prefix_path.sh
+-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/share/uav_traj_ros2/environment/ament_prefix_path.dsv
+-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/share/uav_traj_ros2/environment/path.sh
+-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/share/uav_traj_ros2/environment/path.dsv
+-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/share/uav_traj_ros2/local_setup.bash
+-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/share/uav_traj_ros2/local_setup.sh
+-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/share/uav_traj_ros2/local_setup.zsh
+-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/share/uav_traj_ros2/local_setup.dsv
+-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/share/uav_traj_ros2/package.dsv
+-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/share/ament_index/resource_index/packages/uav_traj_ros2
+-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/share/uav_traj_ros2/cmake/uav_traj_ros2Config.cmake
+-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/share/uav_traj_ros2/cmake/uav_traj_ros2Config-version.cmake
+-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/share/uav_traj_ros2/package.xml
+Listing '/home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/lib/python3.8/site-packages/uav_traj_ros2'...
+Listing '/home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/lib/python3.8/site-packages/uav_traj_ros2/CasadiModels'...
+Compiling '/home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/lib/python3.8/site-packages/uav_traj_ros2/CasadiModels/AirplaneModel.py'...
+Compiling '/home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/lib/python3.8/site-packages/uav_traj_ros2/CasadiModels/__init__.py'...
+Compiling '/home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/lib/python3.8/site-packages/uav_traj_ros2/Config.py'...
+Compiling '/home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/lib/python3.8/site-packages/uav_traj_ros2/MPC.py'...
+Compiling '/home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/lib/python3.8/site-packages/uav_traj_ros2/__init__.py'...
+Compiling '/home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/lib/python3.8/site-packages/uav_traj_ros2/quaternion_tools.py'...

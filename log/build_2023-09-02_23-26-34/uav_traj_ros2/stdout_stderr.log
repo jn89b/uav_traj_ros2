@@ -1,0 +1,110 @@
+[35m[1mScanning dependencies of target sas_main[0m
+[35m[1mScanning dependencies of target global_planner_node[0m
+[ 14%] [32mBuilding CXX object CMakeFiles/sas_main.dir/src/Astar.cpp.o[0m
+[ 14%] [32mBuilding CXX object CMakeFiles/sas_main.dir/scripts/main_sas.cpp.o[0m
+[ 35%] Built target main_node
+[ 42%] [32mBuilding CXX object CMakeFiles/global_planner_node.dir/src/Astar.cpp.o[0m
+[ 50%] [32mBuilding CXX object CMakeFiles/global_planner_node.dir/scripts/global_planner_node.cpp.o[0m
+[ 57%] [32mBuilding CXX object CMakeFiles/global_planner_node.dir/src/GlobalPlanner.cpp.o[0m
+In file included from [01m[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/include/Astar.h:10[m[K,
+                 from [01m[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/scripts/main_sas.cpp:5[m[K:
+[01m[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/include/PositionVector.h:52:9:[m[K [01;35m[Kwarning: [m[Ktype qualifiers ignored on function return type [[01;35m[K-Wignored-qualifiers[m[K]
+   52 |         [01;35m[Kconst[m[K double getThetaDg() {return theta_dg;}
+      |         [01;35m[K^~~~~[m[K
+[01m[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/include/PositionVector.h:53:9:[m[K [01;35m[Kwarning: [m[Ktype qualifiers ignored on function return type [[01;35m[K-Wignored-qualifiers[m[K]
+   53 |         [01;35m[Kconst[m[K double getPsiDg() {return psi_dg;}
+      |         [01;35m[K^~~~~[m[K
+In file included from [01m[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/include/Astar.h:10[m[K,
+                 from [01m[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/src/Astar.cpp:1[m[K:
+[01m[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/include/PositionVector.h:52:9:[m[K [01;35m[Kwarning: [m[Ktype qualifiers ignored on function return type [[01;35m[K-Wignored-qualifiers[m[K]
+   52 |         [01;35m[Kconst[m[K double getThetaDg() {return theta_dg;}
+      |         [01;35m[K^~~~~[m[K
+[01m[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/include/PositionVector.h:53:9:[m[K [01;35m[Kwarning: [m[Ktype qualifiers ignored on function return type [[01;35m[K-Wignored-qualifiers[m[K]
+   53 |         [01;35m[Kconst[m[K double getPsiDg() {return psi_dg;}
+      |         [01;35m[K^~~~~[m[K
+[01m[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/src/Astar.cpp:15:2:[m[K [01;35m[Kwarning: [m[Kextra ‘[01m[K;[m[K’ [[01;35m[K-Wpedantic[m[K]
+   15 | }[01;35m[K;[m[K
+      |  [01;35m[K^[m[K
+[01m[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/src/Astar.cpp:[m[K In member function ‘[01m[Kvoid FWNode::setDirectionVec()[m[K’:
+[01m[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/src/Astar.cpp:22:15:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Kmag_direction[m[K’ [[01;35m[K-Wunused-variable[m[K]
+   22 |         float [01;35m[Kmag_direction[m[K = sqrt((direction_vec.x * direction_vec.x) +
+      |               [01;35m[K^~~~~~~~~~~~~[m[K
+[01m[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/scripts/main_sas.cpp:[m[K In function ‘[01m[Kint main()[m[K’:
+[01m[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/scripts/main_sas.cpp:67:19:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Kobstacle[m[K’ [[01;35m[K-Wunused-variable[m[K]
+   67 |         Obstacle *[01;35m[Kobstacle[m[K = new Obstacle(x, y, z,
+      |                   [01;35m[K^~~~~~~~[m[K
+In file included from [01m[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/include/Astar.h:10[m[K,
+                 from [01m[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/src/Astar.cpp:1[m[K:
+[01m[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/include/PositionVector.h:52:9:[m[K [01;35m[Kwarning: [m[Ktype qualifiers ignored on function return type [[01;35m[K-Wignored-qualifiers[m[K]
+   52 |         [01;35m[Kconst[m[K double getThetaDg() {return theta_dg;}
+      |         [01;35m[K^~~~~[m[K
+[01m[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/include/PositionVector.h:53:9:[m[K [01;35m[Kwarning: [m[Ktype qualifiers ignored on function return type [[01;35m[K-Wignored-qualifiers[m[K]
+   53 |         [01;35m[Kconst[m[K double getPsiDg() {return psi_dg;}
+      |         [01;35m[K^~~~~[m[K
+[01m[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/src/Astar.cpp:15:2:[m[K [01;35m[Kwarning: [m[Kextra ‘[01m[K;[m[K’ [[01;35m[K-Wpedantic[m[K]
+   15 | }[01;35m[K;[m[K
+      |  [01;35m[K^[m[K
+[01m[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/src/Astar.cpp:[m[K In member function ‘[01m[Kvoid FWNode::setDirectionVec()[m[K’:
+[01m[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/src/Astar.cpp:22:15:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Kmag_direction[m[K’ [[01;35m[K-Wunused-variable[m[K]
+   22 |         float [01;35m[Kmag_direction[m[K = sqrt((direction_vec.x * direction_vec.x) +
+      |               [01;35m[K^~~~~~~~~~~~~[m[K
+[ 64%] [32m[1mLinking CXX executable sas_main[0m
+[ 78%] Built target sas_main
+In file included from [01m[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/include/Astar.h:10[m[K,
+                 from [01m[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/include/GlobalPlanner.h:8[m[K,
+                 from [01m[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/scripts/global_planner_node.cpp:2[m[K:
+[01m[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/include/PositionVector.h:52:9:[m[K [01;35m[Kwarning: [m[Ktype qualifiers ignored on function return type [[01;35m[K-Wignored-qualifiers[m[K]
+   52 |         [01;35m[Kconst[m[K double getThetaDg() {return theta_dg;}
+      |         [01;35m[K^~~~~[m[K
+[01m[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/include/PositionVector.h:53:9:[m[K [01;35m[Kwarning: [m[Ktype qualifiers ignored on function return type [[01;35m[K-Wignored-qualifiers[m[K]
+   53 |         [01;35m[Kconst[m[K double getPsiDg() {return psi_dg;}
+      |         [01;35m[K^~~~~[m[K
+In file included from [01m[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/include/Astar.h:10[m[K,
+                 from [01m[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/include/GlobalPlanner.h:8[m[K,
+                 from [01m[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/src/GlobalPlanner.cpp:1[m[K:
+[01m[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/include/PositionVector.h:52:9:[m[K [01;35m[Kwarning: [m[Ktype qualifiers ignored on function return type [[01;35m[K-Wignored-qualifiers[m[K]
+   52 |         [01;35m[Kconst[m[K double getThetaDg() {return theta_dg;}
+      |         [01;35m[K^~~~~[m[K
+[01m[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/include/PositionVector.h:53:9:[m[K [01;35m[Kwarning: [m[Ktype qualifiers ignored on function return type [[01;35m[K-Wignored-qualifiers[m[K]
+   53 |         [01;35m[Kconst[m[K double getPsiDg() {return psi_dg;}
+      |         [01;35m[K^~~~~[m[K
+[ 85%] [32m[1mLinking CXX executable global_planner_node[0m
+[100%] Built target global_planner_node
+-- Install configuration: ""
+-- Execute custom install script
+-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/lib/uav_traj_ros2/sas_main
+-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/lib/uav_traj_ros2/main_node
+-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/lib/uav_traj_ros2/global_planner_node
+-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/share/uav_traj_ros2/environment/pythonpath.sh
+-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/share/uav_traj_ros2/environment/pythonpath.dsv
+-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/lib/python3.8/site-packages/uav_traj_ros2/CasadiModels/AirplaneModel.py
+-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/lib/python3.8/site-packages/uav_traj_ros2/CasadiModels/__init__.py
+-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/lib/python3.8/site-packages/uav_traj_ros2/Config.py
+-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/lib/python3.8/site-packages/uav_traj_ros2/MPC.py
+-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/lib/python3.8/site-packages/uav_traj_ros2/__init__.py
+-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/lib/python3.8/site-packages/uav_traj_ros2/quaternion_tools.py
+-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/lib/uav_traj_ros2/waypoint_viz.py
+-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/lib/uav_traj_ros2/fw_mpc_node.py
+-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/share/ament_index/resource_index/package_run_dependencies/uav_traj_ros2
+-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/share/ament_index/resource_index/parent_prefix_path/uav_traj_ros2
+-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/share/uav_traj_ros2/environment/ament_prefix_path.sh
+-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/share/uav_traj_ros2/environment/ament_prefix_path.dsv
+-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/share/uav_traj_ros2/environment/path.sh
+-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/share/uav_traj_ros2/environment/path.dsv
+-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/share/uav_traj_ros2/local_setup.bash
+-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/share/uav_traj_ros2/local_setup.sh
+-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/share/uav_traj_ros2/local_setup.zsh
+-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/share/uav_traj_ros2/local_setup.dsv
+-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/share/uav_traj_ros2/package.dsv
+-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/share/ament_index/resource_index/packages/uav_traj_ros2
+-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/share/uav_traj_ros2/cmake/uav_traj_ros2Config.cmake
+-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/share/uav_traj_ros2/cmake/uav_traj_ros2Config-version.cmake
+-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/share/uav_traj_ros2/package.xml
+Listing '/home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/lib/python3.8/site-packages/uav_traj_ros2'...
+Listing '/home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/lib/python3.8/site-packages/uav_traj_ros2/CasadiModels'...
+Compiling '/home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/lib/python3.8/site-packages/uav_traj_ros2/CasadiModels/AirplaneModel.py'...
+Compiling '/home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/lib/python3.8/site-packages/uav_traj_ros2/CasadiModels/__init__.py'...
+Compiling '/home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/lib/python3.8/site-packages/uav_traj_ros2/Config.py'...
+Compiling '/home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/lib/python3.8/site-packages/uav_traj_ros2/MPC.py'...
+Compiling '/home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/lib/python3.8/site-packages/uav_traj_ros2/__init__.py'...
+Compiling '/home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/lib/python3.8/site-packages/uav_traj_ros2/quaternion_tools.py'...

@@ -31,13 +31,16 @@ class GlobalPlanner : public rclcpp::Node
         StateInfo agent_info_ = StateInfo(0, 0, 0, 0, 0);
         StateInfo traj_info_ = StateInfo(0, 0, 0, -1000, -1000);
 
+        // drone_in
+        drone_interfaces::msg::Waypoints old_path_msg;
+        
         rclcpp::TimerBase::SharedPtr timer_, obs_timer_;
         rclcpp::Subscription<drone_interfaces::msg::Telem>::SharedPtr 
             agent_pos_sub_;
 
         rclcpp::Subscription<drone_interfaces::msg::CtlTraj>::SharedPtr
             agent_traj_sub_;
-        
+
         // subscribe to agent goal position
         void agentPosCb(
             const drone_interfaces::msg::Telem::SharedPtr msg) ;

@@ -227,17 +227,26 @@ class AirplaneSimpleModelMPC(MPC):
             [u_phi_ref, u_theta_ref, u_psi_ref, v_cmd_ref]
 
     def set_state_control_idx(self, mpc_params:dict, 
-        solution_time:float, idx_buffer:int) -> int:
-        """set index based on solution time"""
+        solution_time:float, idx_buffer:int=0, use_buffer=False) -> int:
+        """
+        set index based on solution time
+        Given the solution time round it to the nearest dt
+
+        Based on that rounded value get the index of the control
+
+        """
+        #this rounds this to the nearest 0.1
         time_rounded = round(solution_time, 1)
         
-        if time_rounded <= 1:
-            time_rounded = 1
-
-        control_idx = mpc_params['dt_val']/time_rounded
-        idx = int(round(control_idx)) + idx_buffer
+        if time_rounded <= mpc_params['dt_val']:
+            time_rounded = mpc_params['dt_val']
         
-        return idx
+        control_idx = time_rounded/mpc_params['dt_val']
+
+        if use_buffer:
+            control_idx = control_idx + idx_buffer
+
+        return int(round(control_idx))
 
 
 class StateInfo():
@@ -294,8 +303,8 @@ class MPCTrajFWPublisher(Node):
         self.psi_dg_list = []
 
         self.found_new_path = False
-        self.wp_buffer = 1
-        self.wp_index = 1
+        self.wp_buffer = 2
+        self.wp_index = 2
 
     def waypointCallback(self,msg:Waypoints)->None:
         """
@@ -307,7 +316,6 @@ class MPCTrajFWPublisher(Node):
         waypoints and see if they are the same disregarding,
         the first waypoint or the second waypoint 
         """
-        print("waypoint callback")
         if len(self.waypoint_list) == 0:            
             for wp in msg.points:
                 self.waypoint_list.append(wp)
@@ -315,18 +323,17 @@ class MPCTrajFWPublisher(Node):
                 self.psi_dg_list = list(msg.heading)
             
         # new path
-        if self.waypoint_list[2:] != msg.points[2:]:
-            print("new path")
+        if self.waypoint_list != msg.points:
+            self.found_new_path = True
             self.waypoint_list = []
             for wp in msg.points:
                 self.waypoint_list.append(wp)
-            self.found_new_path = True
             self.theta_dg_list = list(msg.pitch)
             self.psi_dg_list = list(msg.heading)
-
         # not a new path
-        if self.waypoint_list[2:] == msg.points[2:]:
+        else:
             self.found_new_path = False
+
         
     def get_next_goal_point(self) -> StateInfo:
         """
@@ -345,40 +352,43 @@ class MPCTrajFWPublisher(Node):
         state_info = StateInfo()
         
         if self.found_new_path == True:
-            self.wp_index = self.wp_buffer
+
             #need to do a checking mechanism here if I'm between
             if len(self.waypoint_list) == 1:
                 state_info.x = self.waypoint_list[0].x
                 state_info.y = self.waypoint_list[0].y
                 state_info.z = self.waypoint_list[0].z
                 state_info.phi = 0
-                state_info.psi = np.deg2rad(self.waypoint_list[0].psi_dg)
-                state_info.theta = np.deg2rad(self.waypoint_list[0].theta_dg)
+                state_info.psi = np.deg2rad(self.psi_dg_list[0])
+                state_info.theta = np.deg2rad(self.theta_dg_list[0])
                 self.wp_index = self.wp_buffer
-
                 return state_info
-
-            else:
-                state_info.x = self.waypoint_list[self.wp_index+1].x
-                state_info.y = self.waypoint_list[self.wp_index+1].y
-                state_info.z = self.waypoint_list[self.wp_index+1].z
-                state_info.phi = 0
-                state_info.psi = np.deg2rad(self.psi_dg_list[self.wp_index+1])
-                state_info.theta = np.deg2rad(self.theta_dg_list[self.wp_index+1])
-                self.wp_index = self.wp_buffer
-                
-                return state_info
+            # else:
+            #     state_info.x = self.waypoint_list[self.wp_index].x
+            #     state_info.y = self.waypoint_list[self.wp_index].y
+            #     state_info.z = self.waypoint_list[self.wp_index].z
+            #     state_info.phi = 0
+            #     state_info.psi = np.deg2rad(self.psi_dg_list[self.wp_index+1])
+            #     state_info.theta = np.deg2rad(self.theta_dg_list[self.wp_index+1])
+            #     self.wp_index = self.wp_buffer
+            #     return state_info
             
-        print("continuing waypoints: ", self.waypoint_list)
         state_info.x = self.waypoint_list[self.wp_index].x
         state_info.y = self.waypoint_list[self.wp_index].y
         state_info.z = self.waypoint_list[self.wp_index].z
         state_info.phi = 0
         state_info.psi = np.deg2rad(self.psi_dg_list[self.wp_index+1])
         state_info.theta = np.deg2rad(self.theta_dg_list[self.wp_index+1])
-        # next_wp = self.waypoint_list[self.wp_index+1]
-        self.wp_index += 1
 
+        #this is a stupid way to trouble shoot but screw it
+        # state_info.x = 50
+        # state_info.y = 50
+        # state_info.z = 50
+        # state_info.phi = 0
+        # state_info.psi = np.deg2rad(180)
+        # state_info.theta = np.deg2rad(0)
+        
+        # next_wp = self.waypoint_list[self.wp_index+1]
         return state_info
 
     def initHistory(self) -> None:
@@ -557,34 +567,30 @@ def initFWMPC() -> AirplaneSimpleModelMPC:
     simple_airplane_model.set_state_space()
     
     airplane_params = {
-        'u_psi_min': np.deg2rad(-60), #rates
-        'u_psi_max': np.deg2rad(60), #
+        'u_psi_min': np.deg2rad(-35), #rates
+        'u_psi_max': np.deg2rad(35), #
         'u_phi_min': np.deg2rad(-45),
         'u_phi_max': np.deg2rad(45),
         'u_theta_min': np.deg2rad(-10),
         'u_theta_max': np.deg2rad(10),
-        'z_min': 5.0,
-        'z_max': 30.0,
-        'v_cmd_min': 15,
-        'v_cmd_max': 20,
+        'z_min': 10,
+        'z_max': 65,
+        'v_cmd_min': 20,
+        'v_cmd_max': 26,
         'theta_min': np.deg2rad(-10),
         'theta_max': np.deg2rad(10),
-        'phi_min': np.deg2rad(-45),
-        'phi_max': np.deg2rad(45)
+        'phi_min': np.deg2rad(-55),
+        'phi_max': np.deg2rad(55)
         # 'effector': Effector(effector_range=10)
     }
 
-    Q = ca.diag([1.0, 1.0, 0.75, 1.0, 1.0, 1.0, 1.0])
-    R = ca.diag([2.0, 3.0, 1.0, 3.0])
-
-    # Q = ca.diag([1.0, 1.0, 1.0, 0.75, 0.75, 0.75, 0.5])
-    # R = ca.diag([2.0, 3.0, 1.0, 3.0])
-
+    Q = ca.diag([1.0, 1.0, 0.5, 1.0, 1.0, 1.0, 1.0])
+    R = ca.diag([0.5, 0.8, 1.0, 1.0])
 
     simple_mpc_fw_params = {
         'model': simple_airplane_model,
-        'dt_val': 0.1,
-        'N': 15,
+        'dt_val': 0.05,
+        'N': 20,
         'Q': Q,
         'R': R
     }
@@ -599,14 +605,14 @@ def main(args=None):
 
     control_idx = 10
     state_idx = 5
-    idx_buffer = 5
+    idx_buffer = 0
 
     fw_mpc = initFWMPC()
     mpc_traj_node = MPCTrajFWPublisher()
     
     rclpy.spin_once(mpc_traj_node, timeout_sec=3.0)
 
-    dist_error_tol = 20
+    dist_error_tol = 40 
     desired_state_info = mpc_traj_node.get_next_goal_point()
 
     # if desired_state_info == None:
@@ -624,10 +630,10 @@ def main(args=None):
             desired_state_info.x, 
             desired_state_info.y,
             desired_state_info.z, 
-            desired_state_info.phi, 
+            mpc_traj_node.state_info[3], # need to update this 
             desired_state_info.theta, 
             desired_state_info.psi, 
-            desired_state_info.v]
+            desired_state_info.v] 
 
     print("desired state: ", desired_state)
 
@@ -640,9 +646,6 @@ def main(args=None):
 
     traj_dictionary = fw_mpc.returnTrajDictionary(
         projected_controls, projected_states)
-
-    traj_state, traj_control = fw_mpc.get_state_control_ref(
-        traj_dictionary, state_idx, control_idx)
 
     # print("traj state: ", traj_state)
     end_time = time.time()
@@ -668,14 +671,34 @@ def main(args=None):
                         mpc_traj_node.state_info[5],  
                         mpc_traj_node.state_info[6]] 
         
+        if mpc_traj_node.found_new_path is True:
+            print("found new path")
+            desired_state_info = mpc_traj_node.get_next_goal_point()
+            desired_state = [
+                desired_state_info.x, 
+                desired_state_info.y,
+                desired_state_info.z, 
+                mpc_traj_node.state_info[3], 
+                desired_state_info.theta, 
+                desired_state_info.psi, 
+                desired_state_info.v]
+            
+            # print("desired state: ", desired_state)
+            # mpc_traj_node.wp_index += 1
+
+            #mpc_traj_node.destroy_node()
+            #rclpy.shutdown()
+            #return
+            
+
         fw_mpc.reinitStartGoal(offset_state, desired_state)
         start_time = time.time()
-
         projected_controls, projected_states = fw_mpc.solveMPCRealTimeStatic(
             offset_state,
             desired_state,
             mpc_traj_node.control_info)
         end_time = time.time()
+        print("time to solve: ", end_time - start_time)
 
         control_idx = fw_mpc.set_state_control_idx(fw_mpc.mpc_params, 
             end_time - start_time, idx_buffer=idx_buffer)
@@ -689,12 +712,14 @@ def main(args=None):
         mpc_traj_node.publishTrajectory(traj_dictionary, 
                                         state_idx, 
                                         control_idx)
-
-        goal_state_error = mpc_traj_node.computeError(
-            mpc_traj_node.state_info, desired_state)
-
-        distance_error = np.linalg.norm(goal_state_error[0:2])
         
+
+        distance_error = np.linalg.norm(np.array(desired_state[:2]) - \
+                                        np.array(mpc_traj_node.state_info[:2]))
+
+        # distance_error = np.linalg.norm(goal_state_error[0:2])
+        print("desired state: ", desired_state[:2])
+        print("current state: ", mpc_traj_node.state_info[:2])
         print("distance error: ", distance_error)
         print("\n")
 
@@ -733,12 +758,13 @@ def main(args=None):
                 desired_state_info.x, 
                 desired_state_info.y,
                 desired_state_info.z, 
-                desired_state_info.phi, 
+                mpc_traj_node.state_info[3], 
                 desired_state_info.theta, 
                 desired_state_info.psi, 
                 desired_state_info.v]
             
             print("going to next goal point: ", desired_state)
+            mpc_traj_node.wp_index += 1
 
             #mpc_traj_node.destroy_node()
             #rclpy.shutdown()

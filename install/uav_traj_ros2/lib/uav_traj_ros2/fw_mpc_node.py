@@ -1,0 +1,1 @@
+/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/scripts/fw_mpc_node.py

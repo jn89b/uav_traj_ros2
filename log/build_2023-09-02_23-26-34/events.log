@@ -1,0 +1,190 @@
+[0.000000] (-) TimerEvent: {}
+[0.000262] (uav_traj_ros2) JobQueued: {'identifier': 'uav_traj_ros2', 'dependencies': OrderedDict()}
+[0.000498] (uav_traj_ros2) JobStarted: {'identifier': 'uav_traj_ros2'}
+[0.018004] (uav_traj_ros2) JobProgress: {'identifier': 'uav_traj_ros2', 'progress': 'cmake'}
+[0.018344] (uav_traj_ros2) JobProgress: {'identifier': 'uav_traj_ros2', 'progress': 'build'}
+[0.018952] (uav_traj_ros2) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/justin/ros2_ws/src/uav_traj_ros2/build/uav_traj_ros2', '--', '-j16', '-l16'], 'cwd': '/home/justin/ros2_ws/src/uav_traj_ros2/build/uav_traj_ros2', 'env': OrderedDict([('GZ_SIM_SYSTEM_PLUGIN_PATH', '/home/justin/ardupilot_gazebo/build:/home/justin/ardupilot_gazebo/build:'), ('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('SITL_GAZEBO_PATH', '/home/justin/src/sitl_gazebo'), ('GZ_SIM_RESOURCE_PATH', '/home/justin/ardupilot_gazebo/models:/home/justin/ardupilot_gazebo/worlds:/home/justin/ardupilot_gazebo/models:/home/justin/ardupilot_gazebo/worlds:'), ('USER', 'justin'), ('SSH_AGENT_PID', '2486'), ('XDG_SESSION_TYPE', 'x11'), ('GIT_ASKPASS', '/usr/share/code/resources/app/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/home/justin/ros2_ws/install/drone_ros/lib:/home/justin/ros2_ws/install/drone_interfaces/lib:/home/justin/install/drone_ros/lib:/home/justin/AirSim/ros2/install/airsim_ros_pkgs/lib:/home/justin/AirSim/ros2/install/airsim_interfaces/lib:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib::/usr/lib/x86_64-linux-gnu/gazebo-11/plugins::/home/justin/acados/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins::/home/justin/src/sitl_gazebo/build:/home/justin/acados/lib'), ('ACADOS_SOURCE_DIR', '/home/justin/acados'), ('HOME', '/home/justin'), ('CHROME_DESKTOP', 'code-url-handler.desktop'), ('OLDPWD', '/home/justin/ros2_ws'), ('TERM_PROGRAM_VERSION', '1.75.0'), ('DESKTOP_SESSION', 'ubuntu'), ('GAZEBO_MASTER_URI', 'http://localhost:11345'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('VSCODE_GIT_ASKPASS_MAIN', '/usr/share/code/resources/app/extensions/git/dist/askpass-main.js'), ('VSCODE_GIT_ASKPASS_NODE', '/usr/share/code/code'), ('MANAGERPID', '2176'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('_colcon_cd_root', '/opt/ros/foxy/'), ('MANDATORY_PATH', '/usr/share/gconf/ubuntu.mandatory.path'), ('IM_CONFIG_PHASE', '1'), ('COLCON_PREFIX_PATH', '/home/justin/ros2_ws/install:/home/justin/install:/home/justin/AirSim/ros2/install'), ('ROS_DISTRO', 'foxy'), ('LOGNAME', 'justin'), ('JOURNAL_STREAM', '8:63713'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('DEFAULTS_PATH', '/usr/share/gconf/ubuntu.default.path'), ('USERNAME', 'justin'), ('TERM', 'xterm-256color'), ('GAZEBO_MODEL_PATH', '/usr/share/gazebo-11/models:/usr/share/gazebo-11/models::/home/justin/iq_sim/models:/home/justin/src/sitl_gazebo/models:/home/justin/iq_sim/models:/home/justin/src/sitl_gazebo/models'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ISAAC_ROS_WS', '/home/justin/workspaces/isaac_ros-dev/'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('OGRE_RESOURCE_PATH', '/usr/lib/x86_64-linux-gnu/OGRE-1.9.0'), ('PATH', '/opt/ros/foxy/bin:/home/justin/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('SESSION_MANAGER', 'local/justin-Legion-5-17ACH6H:@/tmp/.ICE-unix/2522,unix/justin-Legion-5-17ACH6H:/tmp/.ICE-unix/2522'), ('INVOCATION_ID', '191b236e0b294bf5b7450eedaaaf2e95'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/c11eb617_063f_4c9a_bae7_398e3800bbc2'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('GDK_BACKEND', 'x11'), ('DISPLAY', ':1'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'Unity'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-bfc8ad9047.sock'), ('GNOME_TERMINAL_SERVICE', ':1.102'), ('TERM_PROGRAM', 'vscode'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('ROS_DOMAIN_ID', '30'), ('AMENT_PREFIX_PATH', '/home/justin/ros2_ws/install/uav_traj_ros2:/home/justin/ros2_ws/install/drone_ros:/home/justin/ros2_ws/install/drone_interfaces:/home/justin/install/drone_ros:/home/justin/AirSim/ros2/install/airsim_ros_pkgs:/home/justin/AirSim/ros2/install/airsim_interfaces:/opt/ros/foxy'), ('ORIGINAL_XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('GAZEBO_RESOURCE_PATH', '/usr/share/gazebo-11:/usr/share/gazebo-11:'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('GAZEBO_MODEL_DATABASE_URI', ''), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', '--ms-enable-electron-run-as-node'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/justin/ros2_ws/src/uav_traj_ros2/build/uav_traj_ros2'), ('TURTLEBOT3_MODEL', 'waffle_pi'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('GAZEBO_PLUGIN_PATH', '/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins::/home/justin/src/sitl_gazebo/build:/home/justin/src/sitl_gazebo/build'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/justin/ros2_ws/install/uav_traj_ros2/lib/python3.8/site-packages:/home/justin/ros2_ws/install/drone_ros/lib/python3.8/site-packages:/home/justin/ros2_ws/install/drone_interfaces/lib/python3.8/site-packages:/home/justin/install/drone_ros/lib/python3.8/site-packages:/home/justin/AirSim/ros2/install/airsim_interfaces/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages'), ('COLCON', '1'), ('VTE_VERSION', '6003'), ('CMAKE_PREFIX_PATH', '/home/justin/ros2_ws/install/uav_traj_ros2:/home/justin/ros2_ws/install/drone_ros:/home/justin/ros2_ws/install/drone_interfaces:/home/justin/install/drone_ros:/home/justin/AirSim/ros2/install/airsim_ros_pkgs:/home/justin/AirSim/ros2/install/airsim_interfaces:/opt/ros/foxy')]), 'shell': False}
+[0.063957] (uav_traj_ros2) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target sas_main\x1b[0m\n'}
+[0.064645] (uav_traj_ros2) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target global_planner_node\x1b[0m\n'}
+[0.073911] (uav_traj_ros2) StdoutLine: {'line': b'[ 14%] \x1b[32mBuilding CXX object CMakeFiles/sas_main.dir/src/Astar.cpp.o\x1b[0m\n'}
+[0.074165] (uav_traj_ros2) StdoutLine: {'line': b'[ 14%] \x1b[32mBuilding CXX object CMakeFiles/sas_main.dir/scripts/main_sas.cpp.o\x1b[0m\n'}
+[0.082307] (uav_traj_ros2) StdoutLine: {'line': b'[ 35%] Built target main_node\n'}
+[0.085841] (uav_traj_ros2) StdoutLine: {'line': b'[ 42%] \x1b[32mBuilding CXX object CMakeFiles/global_planner_node.dir/src/Astar.cpp.o\x1b[0m\n'}
+[0.087040] (uav_traj_ros2) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object CMakeFiles/global_planner_node.dir/scripts/global_planner_node.cpp.o\x1b[0m\n'}
+[0.087579] (uav_traj_ros2) StdoutLine: {'line': b'[ 57%] \x1b[32mBuilding CXX object CMakeFiles/global_planner_node.dir/src/GlobalPlanner.cpp.o\x1b[0m\n'}
+[0.099748] (-) TimerEvent: {}
+[0.200078] (-) TimerEvent: {}
+[0.300367] (-) TimerEvent: {}
+[0.400681] (-) TimerEvent: {}
+[0.428542] (uav_traj_ros2) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/include/Astar.h:10\x1b[m\x1b[K,\n'}
+[0.428856] (uav_traj_ros2) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/scripts/main_sas.cpp:5\x1b[m\x1b[K:\n'}
+[0.429031] (uav_traj_ros2) StderrLine: {'line': b'\x1b[01m\x1b[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/include/PositionVector.h:52:9:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Ktype qualifiers ignored on function return type [\x1b[01;35m\x1b[K-Wignored-qualifiers\x1b[m\x1b[K]\n'}
+[0.429176] (uav_traj_ros2) StderrLine: {'line': b'   52 |         \x1b[01;35m\x1b[Kconst\x1b[m\x1b[K double getThetaDg() {return theta_dg;}\n'}
+[0.429302] (uav_traj_ros2) StderrLine: {'line': b'      |         \x1b[01;35m\x1b[K^~~~~\x1b[m\x1b[K\n'}
+[0.430792] (uav_traj_ros2) StderrLine: {'line': b'\x1b[01m\x1b[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/include/PositionVector.h:53:9:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Ktype qualifiers ignored on function return type [\x1b[01;35m\x1b[K-Wignored-qualifiers\x1b[m\x1b[K]\n'}
+[0.430981] (uav_traj_ros2) StderrLine: {'line': b'   53 |         \x1b[01;35m\x1b[Kconst\x1b[m\x1b[K double getPsiDg() {return psi_dg;}\n'}
+[0.431048] (uav_traj_ros2) StderrLine: {'line': b'      |         \x1b[01;35m\x1b[K^~~~~\x1b[m\x1b[K\n'}
+[0.463746] (uav_traj_ros2) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/include/Astar.h:10\x1b[m\x1b[K,\n'}
+[0.463992] (uav_traj_ros2) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/src/Astar.cpp:1\x1b[m\x1b[K:\n'}
+[0.464077] (uav_traj_ros2) StderrLine: {'line': b'\x1b[01m\x1b[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/include/PositionVector.h:52:9:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Ktype qualifiers ignored on function return type [\x1b[01;35m\x1b[K-Wignored-qualifiers\x1b[m\x1b[K]\n'}
+[0.464155] (uav_traj_ros2) StderrLine: {'line': b'   52 |         \x1b[01;35m\x1b[Kconst\x1b[m\x1b[K double getThetaDg() {return theta_dg;}\n'}
+[0.464226] (uav_traj_ros2) StderrLine: {'line': b'      |         \x1b[01;35m\x1b[K^~~~~\x1b[m\x1b[K\n'}
+[0.464294] (uav_traj_ros2) StderrLine: {'line': b'\x1b[01m\x1b[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/include/PositionVector.h:53:9:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Ktype qualifiers ignored on function return type [\x1b[01;35m\x1b[K-Wignored-qualifiers\x1b[m\x1b[K]\n'}
+[0.464362] (uav_traj_ros2) StderrLine: {'line': b'   53 |         \x1b[01;35m\x1b[Kconst\x1b[m\x1b[K double getPsiDg() {return psi_dg;}\n'}
+[0.464427] (uav_traj_ros2) StderrLine: {'line': b'      |         \x1b[01;35m\x1b[K^~~~~\x1b[m\x1b[K\n'}
+[0.495577] (uav_traj_ros2) StderrLine: {'line': b'\x1b[01m\x1b[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/src/Astar.cpp:15:2:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kextra \xe2\x80\x98\x1b[01m\x1b[K;\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wpedantic\x1b[m\x1b[K]\n'}
+[0.495855] (uav_traj_ros2) StderrLine: {'line': b'   15 | }\x1b[01;35m\x1b[K;\x1b[m\x1b[K\n'}
+[0.495947] (uav_traj_ros2) StderrLine: {'line': b'      |  \x1b[01;35m\x1b[K^\x1b[m\x1b[K\n'}
+[0.496012] (uav_traj_ros2) StderrLine: {'line': b'\x1b[01m\x1b[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/src/Astar.cpp:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Kvoid FWNode::setDirectionVec()\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[0.496090] (uav_traj_ros2) StderrLine: {'line': b'\x1b[01m\x1b[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/src/Astar.cpp:22:15:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused variable \xe2\x80\x98\x1b[01m\x1b[Kmag_direction\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-variable\x1b[m\x1b[K]\n'}
+[0.496156] (uav_traj_ros2) StderrLine: {'line': b'   22 |         float \x1b[01;35m\x1b[Kmag_direction\x1b[m\x1b[K = sqrt((direction_vec.x * direction_vec.x) +\n'}
+[0.496218] (uav_traj_ros2) StderrLine: {'line': b'      |               \x1b[01;35m\x1b[K^~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[0.500791] (-) TimerEvent: {}
+[0.505848] (uav_traj_ros2) StderrLine: {'line': b'\x1b[01m\x1b[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/scripts/main_sas.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kint main()\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[0.506055] (uav_traj_ros2) StderrLine: {'line': b'\x1b[01m\x1b[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/scripts/main_sas.cpp:67:19:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused variable \xe2\x80\x98\x1b[01m\x1b[Kobstacle\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-variable\x1b[m\x1b[K]\n'}
+[0.506140] (uav_traj_ros2) StderrLine: {'line': b'   67 |         Obstacle *\x1b[01;35m\x1b[Kobstacle\x1b[m\x1b[K = new Obstacle(x, y, z,\n'}
+[0.506206] (uav_traj_ros2) StderrLine: {'line': b'      |                   \x1b[01;35m\x1b[K^~~~~~~~\x1b[m\x1b[K\n'}
+[0.545810] (uav_traj_ros2) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/include/Astar.h:10\x1b[m\x1b[K,\n'}
+[0.546008] (uav_traj_ros2) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/src/Astar.cpp:1\x1b[m\x1b[K:\n'}
+[0.546084] (uav_traj_ros2) StderrLine: {'line': b'\x1b[01m\x1b[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/include/PositionVector.h:52:9:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Ktype qualifiers ignored on function return type [\x1b[01;35m\x1b[K-Wignored-qualifiers\x1b[m\x1b[K]\n'}
+[0.546152] (uav_traj_ros2) StderrLine: {'line': b'   52 |         \x1b[01;35m\x1b[Kconst\x1b[m\x1b[K double getThetaDg() {return theta_dg;}\n'}
+[0.546215] (uav_traj_ros2) StderrLine: {'line': b'      |         \x1b[01;35m\x1b[K^~~~~\x1b[m\x1b[K\n'}
+[0.546276] (uav_traj_ros2) StderrLine: {'line': b'\x1b[01m\x1b[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/include/PositionVector.h:53:9:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Ktype qualifiers ignored on function return type [\x1b[01;35m\x1b[K-Wignored-qualifiers\x1b[m\x1b[K]\n'}
+[0.546343] (uav_traj_ros2) StderrLine: {'line': b'   53 |         \x1b[01;35m\x1b[Kconst\x1b[m\x1b[K double getPsiDg() {return psi_dg;}\n'}
+[0.546406] (uav_traj_ros2) StderrLine: {'line': b'      |         \x1b[01;35m\x1b[K^~~~~\x1b[m\x1b[K\n'}
+[0.590687] (uav_traj_ros2) StderrLine: {'line': b'\x1b[01m\x1b[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/src/Astar.cpp:15:2:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kextra \xe2\x80\x98\x1b[01m\x1b[K;\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wpedantic\x1b[m\x1b[K]\n'}
+[0.590990] (uav_traj_ros2) StderrLine: {'line': b'   15 | }\x1b[01;35m\x1b[K;\x1b[m\x1b[K\n'}
+[0.591118] (uav_traj_ros2) StderrLine: {'line': b'      |  \x1b[01;35m\x1b[K^\x1b[m\x1b[K\n'}
+[0.591231] (uav_traj_ros2) StderrLine: {'line': b'\x1b[01m\x1b[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/src/Astar.cpp:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Kvoid FWNode::setDirectionVec()\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[0.591345] (uav_traj_ros2) StderrLine: {'line': b'\x1b[01m\x1b[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/src/Astar.cpp:22:15:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused variable \xe2\x80\x98\x1b[01m\x1b[Kmag_direction\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-variable\x1b[m\x1b[K]\n'}
+[0.591459] (uav_traj_ros2) StderrLine: {'line': b'   22 |         float \x1b[01;35m\x1b[Kmag_direction\x1b[m\x1b[K = sqrt((direction_vec.x * direction_vec.x) +\n'}
+[0.591563] (uav_traj_ros2) StderrLine: {'line': b'      |               \x1b[01;35m\x1b[K^~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[0.600896] (-) TimerEvent: {}
+[0.701177] (-) TimerEvent: {}
+[0.801473] (-) TimerEvent: {}
+[0.901794] (-) TimerEvent: {}
+[1.002124] (-) TimerEvent: {}
+[1.084287] (uav_traj_ros2) StdoutLine: {'line': b'[ 64%] \x1b[32m\x1b[1mLinking CXX executable sas_main\x1b[0m\n'}
+[1.102243] (-) TimerEvent: {}
+[1.161106] (uav_traj_ros2) StdoutLine: {'line': b'[ 78%] Built target sas_main\n'}
+[1.202343] (-) TimerEvent: {}
+[1.290156] (uav_traj_ros2) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/include/Astar.h:10\x1b[m\x1b[K,\n'}
+[1.290346] (uav_traj_ros2) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/include/GlobalPlanner.h:8\x1b[m\x1b[K,\n'}
+[1.290420] (uav_traj_ros2) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/scripts/global_planner_node.cpp:2\x1b[m\x1b[K:\n'}
+[1.290483] (uav_traj_ros2) StderrLine: {'line': b'\x1b[01m\x1b[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/include/PositionVector.h:52:9:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Ktype qualifiers ignored on function return type [\x1b[01;35m\x1b[K-Wignored-qualifiers\x1b[m\x1b[K]\n'}
+[1.290545] (uav_traj_ros2) StderrLine: {'line': b'   52 |         \x1b[01;35m\x1b[Kconst\x1b[m\x1b[K double getThetaDg() {return theta_dg;}\n'}
+[1.290603] (uav_traj_ros2) StderrLine: {'line': b'      |         \x1b[01;35m\x1b[K^~~~~\x1b[m\x1b[K\n'}
+[1.290659] (uav_traj_ros2) StderrLine: {'line': b'\x1b[01m\x1b[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/include/PositionVector.h:53:9:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Ktype qualifiers ignored on function return type [\x1b[01;35m\x1b[K-Wignored-qualifiers\x1b[m\x1b[K]\n'}
+[1.290717] (uav_traj_ros2) StderrLine: {'line': b'   53 |         \x1b[01;35m\x1b[Kconst\x1b[m\x1b[K double getPsiDg() {return psi_dg;}\n'}
+[1.290773] (uav_traj_ros2) StderrLine: {'line': b'      |         \x1b[01;35m\x1b[K^~~~~\x1b[m\x1b[K\n'}
+[1.302448] (-) TimerEvent: {}
+[1.310312] (uav_traj_ros2) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/include/Astar.h:10\x1b[m\x1b[K,\n'}
+[1.310497] (uav_traj_ros2) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/include/GlobalPlanner.h:8\x1b[m\x1b[K,\n'}
+[1.310569] (uav_traj_ros2) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/src/GlobalPlanner.cpp:1\x1b[m\x1b[K:\n'}
+[1.310633] (uav_traj_ros2) StderrLine: {'line': b'\x1b[01m\x1b[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/include/PositionVector.h:52:9:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Ktype qualifiers ignored on function return type [\x1b[01;35m\x1b[K-Wignored-qualifiers\x1b[m\x1b[K]\n'}
+[1.310693] (uav_traj_ros2) StderrLine: {'line': b'   52 |         \x1b[01;35m\x1b[Kconst\x1b[m\x1b[K double getThetaDg() {return theta_dg;}\n'}
+[1.310752] (uav_traj_ros2) StderrLine: {'line': b'      |         \x1b[01;35m\x1b[K^~~~~\x1b[m\x1b[K\n'}
+[1.310810] (uav_traj_ros2) StderrLine: {'line': b'\x1b[01m\x1b[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/include/PositionVector.h:53:9:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Ktype qualifiers ignored on function return type [\x1b[01;35m\x1b[K-Wignored-qualifiers\x1b[m\x1b[K]\n'}
+[1.310868] (uav_traj_ros2) StderrLine: {'line': b'   53 |         \x1b[01;35m\x1b[Kconst\x1b[m\x1b[K double getPsiDg() {return psi_dg;}\n'}
+[1.310936] (uav_traj_ros2) StderrLine: {'line': b'      |         \x1b[01;35m\x1b[K^~~~~\x1b[m\x1b[K\n'}
+[1.402551] (-) TimerEvent: {}
+[1.502841] (-) TimerEvent: {}
+[1.603125] (-) TimerEvent: {}
+[1.703400] (-) TimerEvent: {}
+[1.803685] (-) TimerEvent: {}
+[1.903954] (-) TimerEvent: {}
+[2.004203] (-) TimerEvent: {}
+[2.104470] (-) TimerEvent: {}
+[2.204735] (-) TimerEvent: {}
+[2.305039] (-) TimerEvent: {}
+[2.405302] (-) TimerEvent: {}
+[2.505568] (-) TimerEvent: {}
+[2.605845] (-) TimerEvent: {}
+[2.706133] (-) TimerEvent: {}
+[2.806427] (-) TimerEvent: {}
+[2.906688] (-) TimerEvent: {}
+[3.006951] (-) TimerEvent: {}
+[3.107202] (-) TimerEvent: {}
+[3.207466] (-) TimerEvent: {}
+[3.307726] (-) TimerEvent: {}
+[3.408008] (-) TimerEvent: {}
+[3.508274] (-) TimerEvent: {}
+[3.608554] (-) TimerEvent: {}
+[3.708827] (-) TimerEvent: {}
+[3.809107] (-) TimerEvent: {}
+[3.909384] (-) TimerEvent: {}
+[4.009650] (-) TimerEvent: {}
+[4.109920] (-) TimerEvent: {}
+[4.210222] (-) TimerEvent: {}
+[4.310495] (-) TimerEvent: {}
+[4.410757] (-) TimerEvent: {}
+[4.511052] (-) TimerEvent: {}
+[4.611364] (-) TimerEvent: {}
+[4.711691] (-) TimerEvent: {}
+[4.811986] (-) TimerEvent: {}
+[4.912301] (-) TimerEvent: {}
+[5.012655] (-) TimerEvent: {}
+[5.113013] (-) TimerEvent: {}
+[5.213319] (-) TimerEvent: {}
+[5.313582] (-) TimerEvent: {}
+[5.413844] (-) TimerEvent: {}
+[5.514106] (-) TimerEvent: {}
+[5.614365] (-) TimerEvent: {}
+[5.714628] (-) TimerEvent: {}
+[5.814893] (-) TimerEvent: {}
+[5.915164] (-) TimerEvent: {}
+[6.015469] (-) TimerEvent: {}
+[6.115778] (-) TimerEvent: {}
+[6.216208] (-) TimerEvent: {}
+[6.257042] (uav_traj_ros2) StdoutLine: {'line': b'[ 85%] \x1b[32m\x1b[1mLinking CXX executable global_planner_node\x1b[0m\n'}
+[6.316320] (-) TimerEvent: {}
+[6.416638] (-) TimerEvent: {}
+[6.502635] (uav_traj_ros2) StdoutLine: {'line': b'[100%] Built target global_planner_node\n'}
+[6.513146] (uav_traj_ros2) CommandEnded: {'returncode': 0}
+[6.516724] (-) TimerEvent: {}
+[6.542848] (uav_traj_ros2) JobProgress: {'identifier': 'uav_traj_ros2', 'progress': 'install'}
+[6.552154] (uav_traj_ros2) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/justin/ros2_ws/src/uav_traj_ros2/build/uav_traj_ros2'], 'cwd': '/home/justin/ros2_ws/src/uav_traj_ros2/build/uav_traj_ros2', 'env': OrderedDict([('GZ_SIM_SYSTEM_PLUGIN_PATH', '/home/justin/ardupilot_gazebo/build:/home/justin/ardupilot_gazebo/build:'), ('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('SITL_GAZEBO_PATH', '/home/justin/src/sitl_gazebo'), ('GZ_SIM_RESOURCE_PATH', '/home/justin/ardupilot_gazebo/models:/home/justin/ardupilot_gazebo/worlds:/home/justin/ardupilot_gazebo/models:/home/justin/ardupilot_gazebo/worlds:'), ('USER', 'justin'), ('SSH_AGENT_PID', '2486'), ('XDG_SESSION_TYPE', 'x11'), ('GIT_ASKPASS', '/usr/share/code/resources/app/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/home/justin/ros2_ws/install/drone_ros/lib:/home/justin/ros2_ws/install/drone_interfaces/lib:/home/justin/install/drone_ros/lib:/home/justin/AirSim/ros2/install/airsim_ros_pkgs/lib:/home/justin/AirSim/ros2/install/airsim_interfaces/lib:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib::/usr/lib/x86_64-linux-gnu/gazebo-11/plugins::/home/justin/acados/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins::/home/justin/src/sitl_gazebo/build:/home/justin/acados/lib'), ('ACADOS_SOURCE_DIR', '/home/justin/acados'), ('HOME', '/home/justin'), ('CHROME_DESKTOP', 'code-url-handler.desktop'), ('OLDPWD', '/home/justin/ros2_ws'), ('TERM_PROGRAM_VERSION', '1.75.0'), ('DESKTOP_SESSION', 'ubuntu'), ('GAZEBO_MASTER_URI', 'http://localhost:11345'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('VSCODE_GIT_ASKPASS_MAIN', '/usr/share/code/resources/app/extensions/git/dist/askpass-main.js'), ('VSCODE_GIT_ASKPASS_NODE', '/usr/share/code/code'), ('MANAGERPID', '2176'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('_colcon_cd_root', '/opt/ros/foxy/'), ('MANDATORY_PATH', '/usr/share/gconf/ubuntu.mandatory.path'), ('IM_CONFIG_PHASE', '1'), ('COLCON_PREFIX_PATH', '/home/justin/ros2_ws/install:/home/justin/install:/home/justin/AirSim/ros2/install'), ('ROS_DISTRO', 'foxy'), ('LOGNAME', 'justin'), ('JOURNAL_STREAM', '8:63713'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('DEFAULTS_PATH', '/usr/share/gconf/ubuntu.default.path'), ('USERNAME', 'justin'), ('TERM', 'xterm-256color'), ('GAZEBO_MODEL_PATH', '/usr/share/gazebo-11/models:/usr/share/gazebo-11/models::/home/justin/iq_sim/models:/home/justin/src/sitl_gazebo/models:/home/justin/iq_sim/models:/home/justin/src/sitl_gazebo/models'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ISAAC_ROS_WS', '/home/justin/workspaces/isaac_ros-dev/'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('OGRE_RESOURCE_PATH', '/usr/lib/x86_64-linux-gnu/OGRE-1.9.0'), ('PATH', '/opt/ros/foxy/bin:/home/justin/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('SESSION_MANAGER', 'local/justin-Legion-5-17ACH6H:@/tmp/.ICE-unix/2522,unix/justin-Legion-5-17ACH6H:/tmp/.ICE-unix/2522'), ('INVOCATION_ID', '191b236e0b294bf5b7450eedaaaf2e95'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/c11eb617_063f_4c9a_bae7_398e3800bbc2'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('GDK_BACKEND', 'x11'), ('DISPLAY', ':1'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'Unity'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-bfc8ad9047.sock'), ('GNOME_TERMINAL_SERVICE', ':1.102'), ('TERM_PROGRAM', 'vscode'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('ROS_DOMAIN_ID', '30'), ('AMENT_PREFIX_PATH', '/home/justin/ros2_ws/install/uav_traj_ros2:/home/justin/ros2_ws/install/drone_ros:/home/justin/ros2_ws/install/drone_interfaces:/home/justin/install/drone_ros:/home/justin/AirSim/ros2/install/airsim_ros_pkgs:/home/justin/AirSim/ros2/install/airsim_interfaces:/opt/ros/foxy'), ('ORIGINAL_XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('GAZEBO_RESOURCE_PATH', '/usr/share/gazebo-11:/usr/share/gazebo-11:'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('GAZEBO_MODEL_DATABASE_URI', ''), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', '--ms-enable-electron-run-as-node'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/justin/ros2_ws/src/uav_traj_ros2/build/uav_traj_ros2'), ('TURTLEBOT3_MODEL', 'waffle_pi'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('GAZEBO_PLUGIN_PATH', '/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins::/home/justin/src/sitl_gazebo/build:/home/justin/src/sitl_gazebo/build'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/justin/ros2_ws/install/uav_traj_ros2/lib/python3.8/site-packages:/home/justin/ros2_ws/install/drone_ros/lib/python3.8/site-packages:/home/justin/ros2_ws/install/drone_interfaces/lib/python3.8/site-packages:/home/justin/install/drone_ros/lib/python3.8/site-packages:/home/justin/AirSim/ros2/install/airsim_interfaces/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages'), ('COLCON', '1'), ('VTE_VERSION', '6003'), ('CMAKE_PREFIX_PATH', '/home/justin/ros2_ws/install/uav_traj_ros2:/home/justin/ros2_ws/install/drone_ros:/home/justin/ros2_ws/install/drone_interfaces:/home/justin/install/drone_ros:/home/justin/AirSim/ros2/install/airsim_ros_pkgs:/home/justin/AirSim/ros2/install/airsim_interfaces:/opt/ros/foxy')]), 'shell': False}
+[6.564732] (uav_traj_ros2) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[6.565080] (uav_traj_ros2) StdoutLine: {'line': b'-- Execute custom install script\n'}
+[6.565439] (uav_traj_ros2) StdoutLine: {'line': b'-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/lib/uav_traj_ros2/sas_main\n'}
+[6.573348] (uav_traj_ros2) StdoutLine: {'line': b'-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/lib/uav_traj_ros2/main_node\n'}
+[6.580433] (uav_traj_ros2) StdoutLine: {'line': b'-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/lib/uav_traj_ros2/global_planner_node\n'}
+[6.587818] (uav_traj_ros2) StdoutLine: {'line': b'-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/share/uav_traj_ros2/environment/pythonpath.sh\n'}
+[6.597621] (uav_traj_ros2) StdoutLine: {'line': b'-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/share/uav_traj_ros2/environment/pythonpath.dsv\n'}
+[6.607148] (uav_traj_ros2) StdoutLine: {'line': b'-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/lib/python3.8/site-packages/uav_traj_ros2/CasadiModels/AirplaneModel.py\n'}
+[6.615257] (uav_traj_ros2) StdoutLine: {'line': b'-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/lib/python3.8/site-packages/uav_traj_ros2/CasadiModels/__init__.py\n'}
+[6.616803] (-) TimerEvent: {}
+[6.622710] (uav_traj_ros2) StdoutLine: {'line': b'-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/lib/python3.8/site-packages/uav_traj_ros2/Config.py\n'}
+[6.630272] (uav_traj_ros2) StdoutLine: {'line': b'-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/lib/python3.8/site-packages/uav_traj_ros2/MPC.py\n'}
+[6.639121] (uav_traj_ros2) StdoutLine: {'line': b'-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/lib/python3.8/site-packages/uav_traj_ros2/__init__.py\n'}
+[6.646798] (uav_traj_ros2) StdoutLine: {'line': b'-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/lib/python3.8/site-packages/uav_traj_ros2/quaternion_tools.py\n'}
+[6.655117] (uav_traj_ros2) StdoutLine: {'line': b'-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/lib/uav_traj_ros2/waypoint_viz.py\n'}
+[6.663161] (uav_traj_ros2) StdoutLine: {'line': b'-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/lib/uav_traj_ros2/fw_mpc_node.py\n'}
+[6.670794] (uav_traj_ros2) StdoutLine: {'line': b'-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/share/ament_index/resource_index/package_run_dependencies/uav_traj_ros2\n'}
+[6.678963] (uav_traj_ros2) StdoutLine: {'line': b'-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/share/ament_index/resource_index/parent_prefix_path/uav_traj_ros2\n'}
+[6.686339] (uav_traj_ros2) StdoutLine: {'line': b'-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/share/uav_traj_ros2/environment/ament_prefix_path.sh\n'}
+[6.694061] (uav_traj_ros2) StdoutLine: {'line': b'-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/share/uav_traj_ros2/environment/ament_prefix_path.dsv\n'}
+[6.701407] (uav_traj_ros2) StdoutLine: {'line': b'-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/share/uav_traj_ros2/environment/path.sh\n'}
+[6.709250] (uav_traj_ros2) StdoutLine: {'line': b'-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/share/uav_traj_ros2/environment/path.dsv\n'}
+[6.716190] (uav_traj_ros2) StdoutLine: {'line': b'-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/share/uav_traj_ros2/local_setup.bash\n'}
+[6.716882] (-) TimerEvent: {}
+[6.723238] (uav_traj_ros2) StdoutLine: {'line': b'-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/share/uav_traj_ros2/local_setup.sh\n'}
+[6.730796] (uav_traj_ros2) StdoutLine: {'line': b'-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/share/uav_traj_ros2/local_setup.zsh\n'}
+[6.738721] (uav_traj_ros2) StdoutLine: {'line': b'-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/share/uav_traj_ros2/local_setup.dsv\n'}
+[6.746795] (uav_traj_ros2) StdoutLine: {'line': b'-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/share/uav_traj_ros2/package.dsv\n'}
+[6.753974] (uav_traj_ros2) StdoutLine: {'line': b'-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/share/ament_index/resource_index/packages/uav_traj_ros2\n'}
+[6.761498] (uav_traj_ros2) StdoutLine: {'line': b'-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/share/uav_traj_ros2/cmake/uav_traj_ros2Config.cmake\n'}
+[6.768584] (uav_traj_ros2) StdoutLine: {'line': b'-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/share/uav_traj_ros2/cmake/uav_traj_ros2Config-version.cmake\n'}
+[6.778026] (uav_traj_ros2) StdoutLine: {'line': b'-- Symlinking: /home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/share/uav_traj_ros2/package.xml\n'}
+[6.816988] (-) TimerEvent: {}
+[6.820091] (uav_traj_ros2) StdoutLine: {'line': b"Listing '/home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/lib/python3.8/site-packages/uav_traj_ros2'...\n"}
+[6.820276] (uav_traj_ros2) StdoutLine: {'line': b"Listing '/home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/lib/python3.8/site-packages/uav_traj_ros2/CasadiModels'...\n"}
+[6.820360] (uav_traj_ros2) StdoutLine: {'line': b"Compiling '/home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/lib/python3.8/site-packages/uav_traj_ros2/CasadiModels/AirplaneModel.py'...\n"}
+[6.820428] (uav_traj_ros2) StdoutLine: {'line': b"Compiling '/home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/lib/python3.8/site-packages/uav_traj_ros2/CasadiModels/__init__.py'...\n"}
+[6.820489] (uav_traj_ros2) StdoutLine: {'line': b"Compiling '/home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/lib/python3.8/site-packages/uav_traj_ros2/Config.py'...\n"}
+[6.820549] (uav_traj_ros2) StdoutLine: {'line': b"Compiling '/home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/lib/python3.8/site-packages/uav_traj_ros2/MPC.py'...\n"}
+[6.820605] (uav_traj_ros2) StdoutLine: {'line': b"Compiling '/home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/lib/python3.8/site-packages/uav_traj_ros2/__init__.py'...\n"}
+[6.820661] (uav_traj_ros2) StdoutLine: {'line': b"Compiling '/home/justin/ros2_ws/src/uav_traj_ros2/install/uav_traj_ros2/lib/python3.8/site-packages/uav_traj_ros2/quaternion_tools.py'...\n"}
+[6.826204] (uav_traj_ros2) CommandEnded: {'returncode': 0}
+[6.902588] (uav_traj_ros2) JobEnded: {'identifier': 'uav_traj_ros2', 'rc': 0}
+[6.903238] (-) EventReactorShutdown: {}

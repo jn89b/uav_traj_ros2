@@ -154,6 +154,7 @@ class MPC():
                 'acceptable_tol': Config.ACCEPT_TOL,
                 'acceptable_obj_change_tol': Config.ACCEPT_OBJ_TOL,
                 'warm_start_init_point': "yes",
+                'warm_start_bound_push': 1e-6,
                 # 'linear_solver': "ma27"
             },
             # 'jit':True,

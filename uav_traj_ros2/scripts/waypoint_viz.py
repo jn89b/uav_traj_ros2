@@ -22,12 +22,19 @@ class WaypointViz(Node):
         self.traj_pub = self.create_publisher(MarkerArray, 
                                               "trajectory_marker", 
                                               10)
+        
+        self.obs_pub = self.create_publisher(MarkerArray,
+                                            "obstacle_marker",
+                                            10)
 
         self.wp_sub = self.create_subscription(Waypoints, "/global_waypoints", 
                                                self.waypointCallback, 10)
                 
         self.mpc_wp_sub = self.create_subscription(CtlTraj, "trajectory",
                                                     self.mpcCallback, 10)
+        
+        self.obs_pos_sub = self.create_subscription(Waypoints, "/obs_positions",
+                                                    self.obsPosCallback, 10)
 
         self.counter = 0
         self.traj_counter = 0
@@ -63,7 +70,7 @@ class WaypointViz(Node):
             marker.id = self.counter
             marker.header.stamp = self.get_clock().now().to_msg()
             marker.header.frame_id = "/map"
-            marker.lifetime = rclpy.duration.Duration(seconds=1.5).to_msg()
+            marker.lifetime = rclpy.duration.Duration(seconds=2).to_msg()
 
             marker_array.markers.append(marker)
             self.counter += 1
@@ -115,6 +122,42 @@ class WaypointViz(Node):
 
         self.traj_pub.publish(marker_array)
 
+    def obsPosCallback(self,msg:Waypoints)->None:
+        """
+        Listen for waypoints and publish waypoints
+        """
+        scale_size = 0.25
+        waypoints = msg.points        
+        marker_array = MarkerArray()
+
+        marker = Marker()
+        marker.type = Marker.SPHERE_LIST
+        marker.action = Marker.ADD
+        
+        marker.scale.x = scale_size
+        marker.scale.y = scale_size
+        marker.scale.z = scale_size
+
+        marker.color.r = 1.0
+        marker.color.a = 1.0    
+
+        for wp in waypoints:
+
+            wp.x = wp.x/Config.SCALE_SIM
+            wp.y = wp.y/Config.SCALE_SIM
+            wp.z = wp.z/Config.SCALE_SIM
+            
+            marker.points.append(wp)
+
+            marker.id = self.counter
+            marker.header.stamp = self.get_clock().now().to_msg()
+            marker.header.frame_id = "/map"
+            marker.ns = "obstacles"
+
+            marker_array.markers.append(marker)
+            self.counter += 1
+
+        self.obs_pub.publish(marker_array)
 
 def main()->None:
     rclpy.init()

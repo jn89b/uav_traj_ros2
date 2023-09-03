@@ -29,7 +29,6 @@ class AirplaneSimpleModel():
             self.psi_f,
             self.airspeed
         )
-
         self.n_states = self.states.size()[0]  # is a column vector
 
     def define_controls(self):

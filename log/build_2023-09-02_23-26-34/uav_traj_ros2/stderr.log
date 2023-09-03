@@ -1,0 +1,60 @@
+In file included from [01m[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/include/Astar.h:10[m[K,
+                 from [01m[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/scripts/main_sas.cpp:5[m[K:
+[01m[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/include/PositionVector.h:52:9:[m[K [01;35m[Kwarning: [m[Ktype qualifiers ignored on function return type [[01;35m[K-Wignored-qualifiers[m[K]
+   52 |         [01;35m[Kconst[m[K double getThetaDg() {return theta_dg;}
+      |         [01;35m[K^~~~~[m[K
+[01m[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/include/PositionVector.h:53:9:[m[K [01;35m[Kwarning: [m[Ktype qualifiers ignored on function return type [[01;35m[K-Wignored-qualifiers[m[K]
+   53 |         [01;35m[Kconst[m[K double getPsiDg() {return psi_dg;}
+      |         [01;35m[K^~~~~[m[K
+In file included from [01m[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/include/Astar.h:10[m[K,
+                 from [01m[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/src/Astar.cpp:1[m[K:
+[01m[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/include/PositionVector.h:52:9:[m[K [01;35m[Kwarning: [m[Ktype qualifiers ignored on function return type [[01;35m[K-Wignored-qualifiers[m[K]
+   52 |         [01;35m[Kconst[m[K double getThetaDg() {return theta_dg;}
+      |         [01;35m[K^~~~~[m[K
+[01m[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/include/PositionVector.h:53:9:[m[K [01;35m[Kwarning: [m[Ktype qualifiers ignored on function return type [[01;35m[K-Wignored-qualifiers[m[K]
+   53 |         [01;35m[Kconst[m[K double getPsiDg() {return psi_dg;}
+      |         [01;35m[K^~~~~[m[K
+[01m[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/src/Astar.cpp:15:2:[m[K [01;35m[Kwarning: [m[Kextra ‘[01m[K;[m[K’ [[01;35m[K-Wpedantic[m[K]
+   15 | }[01;35m[K;[m[K
+      |  [01;35m[K^[m[K
+[01m[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/src/Astar.cpp:[m[K In member function ‘[01m[Kvoid FWNode::setDirectionVec()[m[K’:
+[01m[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/src/Astar.cpp:22:15:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Kmag_direction[m[K’ [[01;35m[K-Wunused-variable[m[K]
+   22 |         float [01;35m[Kmag_direction[m[K = sqrt((direction_vec.x * direction_vec.x) +
+      |               [01;35m[K^~~~~~~~~~~~~[m[K
+[01m[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/scripts/main_sas.cpp:[m[K In function ‘[01m[Kint main()[m[K’:
+[01m[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/scripts/main_sas.cpp:67:19:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Kobstacle[m[K’ [[01;35m[K-Wunused-variable[m[K]
+   67 |         Obstacle *[01;35m[Kobstacle[m[K = new Obstacle(x, y, z,
+      |                   [01;35m[K^~~~~~~~[m[K
+In file included from [01m[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/include/Astar.h:10[m[K,
+                 from [01m[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/src/Astar.cpp:1[m[K:
+[01m[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/include/PositionVector.h:52:9:[m[K [01;35m[Kwarning: [m[Ktype qualifiers ignored on function return type [[01;35m[K-Wignored-qualifiers[m[K]
+   52 |         [01;35m[Kconst[m[K double getThetaDg() {return theta_dg;}
+      |         [01;35m[K^~~~~[m[K
+[01m[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/include/PositionVector.h:53:9:[m[K [01;35m[Kwarning: [m[Ktype qualifiers ignored on function return type [[01;35m[K-Wignored-qualifiers[m[K]
+   53 |         [01;35m[Kconst[m[K double getPsiDg() {return psi_dg;}
+      |         [01;35m[K^~~~~[m[K
+[01m[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/src/Astar.cpp:15:2:[m[K [01;35m[Kwarning: [m[Kextra ‘[01m[K;[m[K’ [[01;35m[K-Wpedantic[m[K]
+   15 | }[01;35m[K;[m[K
+      |  [01;35m[K^[m[K
+[01m[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/src/Astar.cpp:[m[K In member function ‘[01m[Kvoid FWNode::setDirectionVec()[m[K’:
+[01m[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/src/Astar.cpp:22:15:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Kmag_direction[m[K’ [[01;35m[K-Wunused-variable[m[K]
+   22 |         float [01;35m[Kmag_direction[m[K = sqrt((direction_vec.x * direction_vec.x) +
+      |               [01;35m[K^~~~~~~~~~~~~[m[K
+In file included from [01m[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/include/Astar.h:10[m[K,
+                 from [01m[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/include/GlobalPlanner.h:8[m[K,
+                 from [01m[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/scripts/global_planner_node.cpp:2[m[K:
+[01m[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/include/PositionVector.h:52:9:[m[K [01;35m[Kwarning: [m[Ktype qualifiers ignored on function return type [[01;35m[K-Wignored-qualifiers[m[K]
+   52 |         [01;35m[Kconst[m[K double getThetaDg() {return theta_dg;}
+      |         [01;35m[K^~~~~[m[K
+[01m[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/include/PositionVector.h:53:9:[m[K [01;35m[Kwarning: [m[Ktype qualifiers ignored on function return type [[01;35m[K-Wignored-qualifiers[m[K]
+   53 |         [01;35m[Kconst[m[K double getPsiDg() {return psi_dg;}
+      |         [01;35m[K^~~~~[m[K
+In file included from [01m[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/include/Astar.h:10[m[K,
+                 from [01m[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/include/GlobalPlanner.h:8[m[K,
+                 from [01m[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/src/GlobalPlanner.cpp:1[m[K:
+[01m[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/include/PositionVector.h:52:9:[m[K [01;35m[Kwarning: [m[Ktype qualifiers ignored on function return type [[01;35m[K-Wignored-qualifiers[m[K]
+   52 |         [01;35m[Kconst[m[K double getThetaDg() {return theta_dg;}
+      |         [01;35m[K^~~~~[m[K
+[01m[K/home/justin/ros2_ws/src/uav_traj_ros2/uav_traj_ros2/include/PositionVector.h:53:9:[m[K [01;35m[Kwarning: [m[Ktype qualifiers ignored on function return type [[01;35m[K-Wignored-qualifiers[m[K]
+   53 |         [01;35m[Kconst[m[K double getPsiDg() {return psi_dg;}
+      |         [01;35m[K^~~~~[m[K

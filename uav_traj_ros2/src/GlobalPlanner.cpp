@@ -14,6 +14,7 @@ GlobalPlanner::GlobalPlanner(SparseAstar& sparse_astar_): Node("global_planner")
     path_pub_ = this->create_publisher<drone_interfaces::msg::Waypoints>(
         "/global_waypoints", 10);
         
+
     timer_ = this->create_wall_timer(
         std::chrono::milliseconds(1000), 
         std::bind(&GlobalPlanner::publishPath, 
@@ -34,12 +35,13 @@ GlobalPlanner::GlobalPlanner(SparseAstar& sparse_astar_): Node("global_planner")
     obs_pub_ = this->create_publisher<drone_interfaces::msg::Waypoints>(
         "/obs_positions", 10);
 
+    // publishPath();  
     publishObstacles();
 
-    // timer_ = this->create_wall_timer(
-    //     std::chrono::milliseconds(10000), 
-    //     std::bind(&GlobalPlanner::publishObstacles, 
-    //     this));
+    obs_timer_ = this->create_wall_timer(
+        std::chrono::milliseconds(10000), 
+        std::bind(&GlobalPlanner::publishObstacles, 
+        this));
 }
 
 // -------------------------------------------------------------
@@ -97,6 +99,7 @@ void GlobalPlanner::publishPath()
         printf("No trajectory info\n");
         sparse_astar_->updateAgentPosition(agent_info_.pos, 
             agent_info_.theta_dg, agent_info_.psi_dg);
+
     }
     else{
         printf("traj_info_ position: %f, %f, %f\n", 
@@ -108,22 +111,35 @@ void GlobalPlanner::publishPath()
     }
 
     std::vector<StateInfo> path = sparse_astar_->searchPath();
-    // drone_in
-    drone_interfaces::msg::Waypoints msg;
 
-    for (int i=0; i< int(path.size()); i++)
+    if (path.size() == 0)
     {
-        geometry_msgs::msg::Point wp;
-        wp.x = path[i].pos.x;
-        wp.y = path[i].pos.y;
-        wp.z = path[i].pos.z;
-        msg.points.push_back(wp);
-        msg.heading.push_back(path[i].psi_dg);
-        msg.pitch.push_back(path[i].theta_dg);
+        printf("No path found using old path msg\n");
+        path_pub_->publish(old_path_msg);
+        return;
     }
-    
-    path_pub_->publish(msg);
-    printf("Published path\n");
+    else
+    {
+        drone_interfaces::msg::Waypoints msg;
+        for (int i=0; i< int(path.size()); i++)
+        {
+            geometry_msgs::msg::Point wp;
+            wp.x = path[i].pos.x;
+            wp.y = path[i].pos.y;
+            wp.z = path[i].pos.z;
+            msg.points.push_back(wp);
+            // rotate by 90 degrees and wrap to 360 
+            double psi_wrap = path[i].psi_dg + 90 % 360;
+            msg.heading.push_back(psi_wrap);
+            msg.pitch.push_back(path[i].theta_dg);
+        }
+        
+        path_pub_->publish(msg);
+        printf("Published path\n");
+        old_path_msg = msg;
+
+        return; 
+    }
 }
 
 // -------------------------------------------------------------

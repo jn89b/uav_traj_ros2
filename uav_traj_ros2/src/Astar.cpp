@@ -21,6 +21,7 @@ void FWNode::setDirectionVec()
         direction_vec = PositionVector(pos.x,pos.y,pos.y);
         float mag_direction = sqrt((direction_vec.x * direction_vec.x) + 
             (direction_vec.y * direction_vec.y));
+
     }
     else
     {
@@ -339,7 +340,7 @@ std::vector<StateInfo> SparseAstar::searchPath()
     initializeNodes();
 
     // need to have this as a parameter 
-    int max_iter = 5000;
+    int max_iter = 10000;
     int iter = 0;   
     
     // need time limit too 
@@ -408,7 +409,6 @@ std::vector<StateInfo> SparseAstar::searchPath()
         if (open_set.empty())
         {
             printf("Open set is empty\n");
-            path = getPath(current_node);
             break;
         }
 
@@ -464,7 +464,7 @@ std::vector<StateInfo> SparseAstar::getPath(
     return path;
 }
 
-// -------------------------s-------------------------------------
+// --------------------------------------------------------------
 
 void SparseAstar::initializeNodes()
 {
