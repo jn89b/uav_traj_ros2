@@ -166,7 +166,8 @@ def main()->None:
     #node.publishWaypointMarkers()
     while rclpy.ok():
         # node.cool_example()
-        rclpy.spin_once(node, timeout_sec=0.1)
+        rclpy.spin(node)
+        # rclpy.spin_once(node, timeout_sec=0.1)
 
     rclpy.shutdown()
 

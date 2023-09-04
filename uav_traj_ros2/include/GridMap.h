@@ -101,6 +101,7 @@ class FWAgent
 
         float theta_dg;
         float psi_dg;
+        float phi_dg;
 
         float max_psi_turn_dg;
         float leg_segment_m;
@@ -125,6 +126,7 @@ class FWAgent
                 this->psi_dg = psi_dg;
                 this->max_psi_turn_dg = max_psi_turn_dg;
                 this->leg_segment_m = leg_segment_m;
+                this->phi_dg = 0.0f;// this is lazy
             }
         
         // Constructor if you want set as individual doubles
@@ -158,6 +160,9 @@ class FWAgent
         void setPsi(float psi) {psi_dg = psi;}
         float getPsi() {return psi_dg;}
         
+        void setPhi(float phi) {phi_dg = phi;}
+        float getPhi() {return phi_dg;}
+
         //setter getters and update for position
         PositionVector getPosition() {return position;}
         void setPosition(PositionVector pos) {position = pos;}

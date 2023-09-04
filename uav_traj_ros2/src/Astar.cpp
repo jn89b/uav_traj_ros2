@@ -494,6 +494,7 @@ void SparseAstar::initializeNodes()
     start_node->f = 0;
     start_node->theta_dg = agent_->getTheta();
     start_node->psi_dg = agent_->getPsi();
+    start_node->phi_dg = agent_->getPhi();
     start_node->index = positionToIndex1D(start_node->pos);
     start_node->setDirectionVec();
 

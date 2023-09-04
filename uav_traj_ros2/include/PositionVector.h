@@ -57,7 +57,7 @@ class StateInfo
 
         //set values of state
         void setState(double x, double y, double z, 
-            double theta_dg, double psi_dg);
+            double theta_dg, double psi_dg, double phi_dg);
 
         // void setState(PositionVector& pos, double theta_dg, double psi_dg);
 

@@ -29,7 +29,6 @@ GlobalPlanner::GlobalPlanner(SparseAstar& sparse_astar_): Node("global_planner")
         std::bind(&GlobalPlanner::agentTrajCb, 
         this, std::placeholders::_1));
 
-
     // for now only publish obstacles once
     obs_pub_ = this->create_publisher<drone_interfaces::msg::Waypoints>(
         "/obs_positions", 10);
@@ -57,10 +56,11 @@ void GlobalPlanner::agentPosCb(
 
     double psi_dg = msg->yaw * 180.0f / M_PI;
     double theta_dg = msg->pitch * 180.0f / M_PI;
+    double phi_dg = msg->roll * 180.0f / M_PI;
         
     // //replace agent_info_ with new agent info
     // StateInfo new_agent_info = StateInfo(pos, theta_dg, psi_dg);
-    agent_info_.setState(x, y, z, theta_dg, psi_dg);
+    agent_info_.setState(x, y, z, theta_dg, psi_dg, phi_dg);
 
 }
 
@@ -70,16 +70,17 @@ void GlobalPlanner::agentTrajCb(
     const drone_interfaces::msg::CtlTraj::SharedPtr msg) 
 {
     // get last value to set as start set
-    float x = round(msg->y.back());
-    float y = round(msg->x.back()); 
-    float z = -round(msg->z.back());
+    int idx = 4;
+    float x = round(msg->y[idx]);
+    float y = round(msg->x[idx]); 
+    float z = -round(msg->z[idx]);
 
-    float psi_dg = msg->yaw.back() * 180.0f / M_PI;
-    float theta_dg = msg->pitch.back() * 180.0f / M_PI;
-
+    float psi_dg = msg->yaw[idx] * 180.0f / M_PI;
+    float theta_dg = msg->pitch[idx] * 180.0f / M_PI;
+    float phi_dg = msg->roll[idx] * 180.0f / M_PI;
     // update traj info
     // StateInfo traj_info_ = StateInfo(pos, theta_dg, psi_dg);
-    traj_info_.setState(x,y,z, theta_dg, psi_dg);
+    traj_info_.setState(x,y,z, theta_dg, psi_dg, phi_dg);
 
 }
 
@@ -87,7 +88,8 @@ void GlobalPlanner::agentTrajCb(
 
 void GlobalPlanner::publishPath()
 {
-
+    //callback 
+    // rclcpp::spin_some(this->get_node_base_interface());
     printf("Agent position: %f, %f, %f\n", 
      sparse_astar_->getAgent()->getPosition().x,
      sparse_astar_->getAgent()->getPosition().y,

@@ -599,7 +599,7 @@ def initFWMPC() -> AirplaneSimpleModelMPC:
 
 
     Q = ca.diag([1.0, 1.0, 0.5, 1.0, 1.0, 1.0, 1.0])
-    R = ca.diag([0.5, 0.8, 0.5, 1.0])
+    R = ca.diag([0.8, 0.8, 0.8, 1.0])
 
     simple_mpc_fw_params = {
         'model': simple_airplane_model,
@@ -626,7 +626,7 @@ def main(args=None):
     
     rclpy.spin_once(mpc_traj_node, timeout_sec=3.0)
 
-    dist_error_tol = 40 
+    dist_error_tol = 25 
     desired_state_info = mpc_traj_node.get_next_goal_point()
 
     if desired_state_info == None:

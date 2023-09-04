@@ -6,7 +6,8 @@
 - [x] Have MPC trajectory visualized 
 - [x] Figure out time synch between global planner and MPC planner
   - [x] Need to set the global planner to where I will be at in the next n seconds, to prevent lag input
-- [ ] Improve MPC to have Velocity Control (right now its constant) 
+  - [x] Include phi in global planner
+- [x] Improve MPC to have Velocity Control (right now its constant) 
 
 
 

@@ -61,7 +61,6 @@ class AirplaneSimpleModel():
         self.psi_fdot = -self.g * (ca.tan(self.phi_f) / self.v_cmd)
         self.airspeed_fdot =  self.v_cmd  # u  
 
-
         self.z_dot = ca.vertcat(
             self.x_fdot,
             self.y_fdot,
