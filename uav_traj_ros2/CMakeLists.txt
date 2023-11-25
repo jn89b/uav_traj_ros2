@@ -113,6 +113,7 @@ ament_python_install_package(${PROJECT_NAME})
 install(PROGRAMS
   scripts/waypoint_viz.py
   scripts/fw_mpc_node.py
+  scripts/fw_lin_mpc.py
   DESTINATION lib/${PROJECT_NAME}
 )
 

@@ -90,6 +90,7 @@ void GlobalPlanner::publishPath()
 {
     //callback 
     // rclcpp::spin_some(this->get_node_base_interface());
+
     printf("Agent position: %f, %f, %f\n", 
      sparse_astar_->getAgent()->getPosition().x,
      sparse_astar_->getAgent()->getPosition().y,
@@ -107,7 +108,7 @@ void GlobalPlanner::publishPath()
          traj_info_.pos.x,
          traj_info_.pos.y,
          traj_info_.pos.z);
-        sparse_astar_->updateAgentPosition(traj_info_.pos, 
+         sparse_astar_->updateAgentPosition(traj_info_.pos, 
             traj_info_.theta_dg, traj_info_.psi_dg);
     }
 

@@ -11,7 +11,7 @@ int main(int argc, char **argv)
     float theta_dg = 0.0f;
     float psi_dg = 180.0f;
     float max_psi_turn_dg = 20.0f;
-    float max_leg_segment_m = 30;
+    float max_leg_segment_m = 35;
     FWAgent fw_agent(fw_pos, goal_pos, 
         radius_m, theta_dg, 
         psi_dg, 
@@ -19,7 +19,7 @@ int main(int argc, char **argv)
 
     fw_agent.setPsi(psi_dg);
     GridMap gridmap;
-    gridmap.setGridSize(-500, -500, 0, 1000, 1000, 50);
+    gridmap.setGridSize(-500, -500, 0, 1000, 1000, 65);
     fw_agent.setGoalPosition(goal_pos.x, goal_pos.y, goal_pos.z);
 
     SparseAstar sparse_astar(gridmap, fw_agent);

@@ -368,7 +368,8 @@ std::vector<StateInfo> SparseAstar::searchPath()
         if (iter >= max_iter)
         {
             printf("Max iterations reached\n");
-            path = getPath(current_node);
+            //path = getPath(current_node);
+            path.clear();
             break;
         }
 

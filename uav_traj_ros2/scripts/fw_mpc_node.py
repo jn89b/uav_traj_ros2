@@ -307,8 +307,8 @@ class MPCTrajFWPublisher(Node):
         self.phi_dg_list = []
 
         self.found_new_path = False
-        self.wp_buffer = 2
-        self.wp_index = 2
+        self.wp_buffer = 0
+        self.wp_index = 0
 
     def waypointCallback(self,msg:Waypoints)->None:
         """
@@ -585,10 +585,10 @@ def initFWMPC() -> AirplaneSimpleModelMPC:
         'u_phi_max': np.deg2rad(55),
         'u_theta_min': np.deg2rad(-10),
         'u_theta_max': np.deg2rad(10),
-        'z_min': 10,
-        'z_max': 65,    
+        'z_min': 35,
+        'z_max': 60,    
         'v_cmd_min': 15,
-        'v_cmd_max': 25,
+        'v_cmd_max': 23,
         'theta_min': np.deg2rad(-10),
         'theta_max': np.deg2rad(10),
         'phi_min': np.deg2rad(-55),
@@ -598,7 +598,7 @@ def initFWMPC() -> AirplaneSimpleModelMPC:
     }
 
 
-    Q = ca.diag([1.0, 1.0, 0.5, 1.0, 1.0, 1.0, 1.0])
+    Q = ca.diag([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
     R = ca.diag([0.8, 0.8, 0.8, 1.0])
 
     simple_mpc_fw_params = {
@@ -626,7 +626,7 @@ def main(args=None):
     
     rclpy.spin_once(mpc_traj_node, timeout_sec=3.0)
 
-    dist_error_tol = 25 
+    dist_error_tol = 20 
     desired_state_info = mpc_traj_node.get_next_goal_point()
 
     if desired_state_info == None:
